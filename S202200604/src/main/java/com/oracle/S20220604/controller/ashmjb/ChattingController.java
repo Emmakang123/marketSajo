@@ -1,14 +1,13 @@
 package com.oracle.S20220604.controller.ashmjb;
 
-import java.awt.Graphics;
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
-import javax.imageio.ImageIO;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,13 +15,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.oracle.S20220604.domain.Chatting;
+import com.oracle.S20220604.model.Message;
+import com.oracle.S20220604.model.Participant;
 import com.oracle.S20220604.service.ashmjb.ChattingService;
 import com.oracle.S20220604.service.ashmjb.Paging;
+
+import lombok.Getter;
+import lombok.Setter;
 
 
 @RestController
@@ -35,15 +40,71 @@ public class ChattingController {
 		this.cs = cs;
 	}
 	
-	@RequestMapping("/chat")
-	public ModelAndView chat() {
+	@RequestMapping("/chat") // room_type : 1 or 2
+	public ModelAndView chat(HttpServletRequest request, Chatting chatting) {
 		System.out.println("ChattingController chat start");
-		String user_id = "namwoo";
+		String session_id = (String) request.getSession().getAttribute("sessionId");
+		System.out.println("ChattingController chat session_id : "+session_id);
+		if(session_id == null) {
+			System.out.println("==null");
+			request.getSession().setAttribute("sessionId", "namwoo");
+		}
+		
+		else if(request.getSession().getAttribute("sessionId") != null){
+			System.out.println("!=null");
+		}
+		System.out.println("------------session_id------"+session_id);
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("user_id", user_id);
+		mv.addObject("user_id", request.getSession().getAttribute("sessionId").toString());
+//		Chatting chatting = new Chatting();
+		System.out.println("chatting.getKeyword()=> "+chatting.getKeyword());
+		chatting.setRoom_type(1);
+		chatting.setRoom_type2(2);
+		chatting.setUser_id(session_id);
+		
+		
+		if(chatting.getKeyword() != null) {
+			List<Chatting> keywordList =  cs.keywordList(chatting);
+			System.out.println("chattingcontroller chat showList.size()-> "+ keywordList.size());
+			mv.addObject("showList", keywordList);
+		}else {
+			List<Chatting> showList =  cs.showList(chatting);
+			System.out.println("chattingcontroller chat showList.size()-> "+ showList.size());
+			mv.addObject("showList", showList);
+		}
+//		List<Chatting> showList = cs.showList(user_id_test);
+		
 		mv.setViewName("/chatAshmjb/chatRoomMain");
 		return mv;
 	}
+	
+	@RequestMapping("/chat1") // room_type : 3
+	public ModelAndView chat1(HttpServletRequest request, HttpSession session) {
+		System.out.println("ChattingController chat start");
+		
+		if(request.getSession().getAttribute("sessionId") == null) {
+			System.out.println("user_id getSession ==null");
+			session.setAttribute("session_id", "namwoo");
+		}
+		
+		else if(request.getSession().getAttribute("sessionId") != null){
+			System.out.println("user_id getSession !=null");
+		}
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("user_id", session.getAttribute("sessionId").toString());
+		Chatting chatting = new Chatting();
+		chatting.setRoom_type(3);
+		chatting.setRoom_type2(0);
+		System.out.println("user_id"+ session.getAttribute("sessionId").toString());
+		List<Chatting> showList =  cs.showList(chatting);
+		if(showList != null) {
+			System.out.println("chattingcontroller chat showList.size()-> "+ showList.size());
+		}
+		mv.addObject("showList", showList);
+		mv.setViewName("/chatAshmjb/chatRoomMain");
+		return mv;
+	}
+	
 	@RequestMapping("/test")
 	public ModelAndView test() {
 		System.out.println("ChattingController chat start");
@@ -79,10 +140,11 @@ public class ChattingController {
 		System.out.println(file.getOriginalFilename());
 		System.out.println(file.getBytes());
 		System.out.println("createOpenChat upload POST Start");
-		
+		String user_id = request.getSession().getAttribute("sessionId").toString();
 		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
 		System.out.println("savedName : "+savedName);
 		chatting.setPic_change(savedName);
+		chatting.setUser_id(user_id);
 		cs.insert(chatting);
 		
 //		mv.addObject("savedName", savedName);
@@ -111,55 +173,6 @@ public class ChattingController {
 		return savedName;
 	}
 	
-	private String resizeImg(String originalFileName) {
-		String remakeFileName = "";
-		
-		String imgOriginalPath= "C:\\Users\\Anhyemi\\Desktop\\defaultChatImg.png";           // 원본 이미지 파일명
-        String imgTargetPath= "C:\\Users\\Anhyemi\\Desktop\\testimg\\defaultChatImg3.png";    // 새 이미지 파일명
-        String imgFormat = "png";
-        int newWidth = 300;
-        int newHeight = 300;
-
-        Image image;
-        int imageWidth;
-        int imageHeight;
-
-        try{
-            // 원본 이미지 가져오기
-            image = ImageIO.read(new File(imgOriginalPath));
-
-            // 원본 이미지 사이즈 가져오기
-            imageWidth = image.getWidth(null);
-            imageHeight = image.getHeight(null);
-
-            System.out.println("imageWidth : " + imageWidth);
-            System.out.println("imageHeight : " + imageHeight);
-
-
-            // 이미지 리사이즈
-            // Image.SCALE_DEFAULT : 기본 이미지 스케일링 알고리즘 사용
-            // Image.SCALE_FAST    : 이미지 부드러움보다 속도 우선
-            // Image.SCALE_REPLICATE : ReplicateScaleFilter 클래스로 구체화 된 이미지 크기 조절 알고리즘
-            // Image.SCALE_SMOOTH  : 속도보다 이미지 부드러움을 우선
-            // Image.SCALE_AREA_AVERAGING  : 평균 알고리즘 사용
-            Image resizeImage = image.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
-            System.out.println("reimageWidth : " + resizeImage.getWidth(null));
-            System.out.println("reimageHeight : " + resizeImage.getHeight(null));
-            // 새 이미지  저장하기
-            BufferedImage newImage = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_RGB);
-            Graphics g = newImage.getGraphics();
-            g.drawImage(resizeImage, 0, 0, null);
-            g.dispose();
-            ImageIO.write(newImage, imgFormat, new File(imgTargetPath));
-
-        }catch (Exception e){
-
-            e.printStackTrace();
-
-        }
-		
-		return remakeFileName;
-	}
 	
 	@RequestMapping(value="test02")
 	public ModelAndView test02()  {
@@ -188,6 +201,65 @@ public class ChattingController {
 		return mv;
 	}
 	
+	@RequestMapping(value = "/chatnaeyong")
+	public List<Message> chatnaeyong(int room_num) {
+		logger.info("chatnaeyong msgnaeyong room_num-> "+room_num);
+		List<Message> msgnaeyong = cs.msgnaeyong(room_num);
+		System.out.println("msgnaeyong.get(0).getsend_user_id"+msgnaeyong.get(0).getSend_user_id());
+		System.out.println("msgnaeyong.get(0).getRoom_num()->"+msgnaeyong.get(0).getRoom_num());
+		System.out.println("msgnaeyong.size()->"+msgnaeyong.size());
+		return msgnaeyong;
+	}
+	
+	@Getter
+	@Setter
+	public class UploadFile {
+		private MultipartFile fileUpload;
+		private String uploadImg;
+	}
+	
+	@RequestMapping(value="imgAjax", method = RequestMethod.POST) 
+	public Map<String,Object> uploadFiles(UploadFile uploadFile, HttpServletRequest request) throws Exception{
+		System.out.println("tn "+uploadFile.getFileUpload().getOriginalFilename());
+		System.out.println("tb "+uploadFile.getFileUpload().getBytes());
+		String uploadFolder = request.getSession().getServletContext().getRealPath("/upload/");
+		String uploadFileName = "";
+		String uploadFilesavedName = "";
+		Map<String,Object> resultMap=new HashMap<String,Object>();
+		uploadFileName = uploadFile.getFileUpload().getOriginalFilename();
+		uploadFilesavedName = uploadFile(uploadFileName, uploadFile.getFileUpload().getBytes(), uploadFolder);
+		System.out.println("imgAjaxFileName-> "+uploadFilesavedName);
+		String realFileName = "/upload/"+ uploadFilesavedName;
+		System.out.println(realFileName + "-------");
+		resultMap.put("addr", uploadFolder);
+		resultMap.put("fileName", uploadFilesavedName);
+		resultMap.put("realFileName", realFileName);
+        return resultMap;
+		        
+    }
+	// 오픈채팅리스트에서 방이름 누르면 room_num을 들고 참여자 목록에 인서트
+		@RequestMapping(value = "insertParti")
+		public ModelAndView insertParti(Participant parti,HttpServletRequest request) {
+			ModelAndView mv = new ModelAndView();
+			parti.setRoom_num(Integer.parseInt(request.getParameter("room_num")) ); 
+			System.out.println("ChattingController parti.getRoom_num : "+ parti.getRoom_num());
+			System.out.println("ChattingController createOpenChat Start... ");
+			String user_id = (String) request.getSession().getAttribute("sessionId");
+			if(request.getSession().getAttribute("sessionId") == null) {
+				System.out.println("user_id getSession ==null");
+				request.getSession().setAttribute("sessionId", "namwoo");
+				parti.setUser_id(user_id);
+			}
+			else if(request.getSession().getAttribute("sessionId") != null){
+				System.out.println("user_id getSession !=null");
+				parti.setUser_id(user_id);
+			}
+			//cs.count(parti);
+			
+			 cs.insertParti(parti);
+			mv.setViewName("redirect:chat");
+			return mv;
+		}	
 	
 	
 }

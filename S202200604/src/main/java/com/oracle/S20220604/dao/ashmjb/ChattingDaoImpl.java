@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.oracle.S20220604.domain.Chatting;
+import com.oracle.S20220604.model.Message;
+import com.oracle.S20220604.model.Participant;
 @Repository
 public class ChattingDaoImpl implements ChattingDao {
 	@Autowired
@@ -22,10 +24,26 @@ public class ChattingDaoImpl implements ChattingDao {
 
 	@Override
 	public Chatting save(Chatting chatting) {
-
 		em.persist(chatting);
+		System.out.println("Chatting save->");
+		
 		return chatting;
-	
+	}
+
+	@Override
+	public int saveParticipant(Participant pt) {
+		int result = 0;
+		int room_num = session.selectOne("akSelectUser_id");
+		pt.setRoom_num(room_num);
+		System.out.println("chatting.getRoom_num->"+pt.getRoom_num());
+		System.out.println("chatting.getUser_id->"+pt.getUser_id());
+		try {
+			result = session.insert("akInsertParticipant", pt);
+			System.out.println("akInsertParticipant -> "+result);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+		return result;
 	}
 
 	@Override
@@ -56,6 +74,77 @@ public class ChattingDaoImpl implements ChattingDao {
 		}
 		
 		return openChatList;
+	}
+
+	@Override
+	public List<Chatting> showList(Chatting chatting) {
+		List<Chatting> showList = null;
+		System.out.println("ChattingDaoImpl showList Start ... ");
+		try {
+			System.out.println("ChattingDaoImpl showList user_id : "+ chatting.getUser_id());
+			if(chatting.getRoom_type2() != 0	) {
+				showList = session.selectList("akChattingShowList12", chatting);
+				
+				System.out.println("ChattingDaoImpl akChattingShowList12 showList.size()->"+showList.size());
+			}
+			else {
+				showList = session.selectList("akChattingShowList3", chatting);
+				System.out.println("ChattingDaoImpl akChattingShowList3 showList.size()->"+showList.size());
+			}
+			
+		} catch (Exception e) {
+			System.out.println("ChattingDaoImpl showList Exception..->"+ e.getMessage());
+		}
+		return showList;
+	}
+
+	@Override
+	public List<Message> msgnaeyong(int room_num) {
+		List<Message> msgnaeyong = null;
+		System.out.println("ChattingDaoImpl msgnaeyong start");
+		try {
+			System.out.println("ChattingDaoImpl star room_num : "+ room_num);
+			msgnaeyong = session.selectList("akMsgNaeYong", room_num);
+			
+			System.out.println("ChattingDaoImpl after msgnaeyong.size()->"+msgnaeyong.size());
+			
+		} catch (Exception e) {
+			System.out.println("ChattingDaoImpl msgnaeyong Exception..->"+ e.getMessage());
+		}
+		return msgnaeyong;
+	}
+	
+	@Override
+	public List<Chatting> keywordList(Chatting chatting) {
+		List<Chatting> keywordList = null;
+		System.out.println("ChattingDaoImpl keywordList Start...");
+//		if(chatting.getKeyword() == null) chatting.setKeyword("%");
+		try {
+			keywordList = session.selectList("akKeywordList", chatting);
+			System.out.println("ChattingDaoImpl after keywordList -> "+ keywordList.size());
+		} catch (Exception e) {
+			System.out.println("ChattingDaoImpl keywordList Exception..->"+ e.getMessage());
+		}
+			
+		return keywordList;
+	}
+	@Override
+	public int insertParti(Participant parti) {
+		int result = 0;
+		System.out.println("ChattingDaoImpl insertParti start...");
+		System.out.println("ChattingDaoImpl insertParti parti.getRoom_num() : "+ parti.getRoom_num());
+		System.out.println("ChattingDaoImpl insertParti parti.getUser_id() : "+ parti.getUser_id());
+		int count = session.selectOne("akCountParti", parti);
+		
+		System.out.println("ChattingDaoImpl 참여자목록 count : "+ count);
+		if(count == 0) {
+			result = session.insert("akInsertParticipant", parti);
+			System.out.println("ChattingDaoImpl session.insert result2 : "+result);
+		}
+		else {
+			result = 0;
+		}
+		return result;
 	}
 
 }
