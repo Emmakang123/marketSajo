@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+#sidebar {
+	padding-top: 60px;
+	font-family: 'Noto Sans KR';
+}
+
+#main{
+	padding: 60px;
+	font-family: 'Noto Sans KR';
+}
+
+.faq {
+	
+	padding-bottom: 10px;
+}
+
+.faqSearch{
+	padding-bottom: 10px;
+}
+
+#faqTbl {
+	text-align: center;
+}
+#faqTbl a {
+	text-decoration: none;
+}
+.page {
+	text-align: center;
+}
+.page a {
+	text-align: center;
+	text-decoration: none;
+	color: grey;
+}

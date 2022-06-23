@@ -1,0 +1,32 @@
+@charset "UTF-8";
+.container{
+	font-family: 'Noto Sans KR';
+}
+#sidebar {
+	padding-top: 60px;
+	
+}
+ 
+#sidebar h4 {
+	font-size:25px;
+	font-weight: 2px;
+
+}
+ 
+#sidebar ul {
+	border: 1px;
+}
+
+.login {
+	padding-bottom: 10px;
+}
+.Loginbtn {
+	margin-bottom: 30px;
+	text-align: center;
+}
+#pass {
+	padding-bottom: 10px;
+}
+.Loginbtn button {
+	background-color: #b0d282;
+}

@@ -1,0 +1,100 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
+<%
+	String context = request.getContextPath();
+    System.out.println("context->"+context);
+%>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>상품등록</title>
+<link href="css/kge/productBoardWrite.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+	var contextPath='${pageContext.request.contextPath}';
+	var src='${pageContext.request.contextPath}/images/';
+
+	function ProInfotype(){
+		var str = "";
+		var str2 = "";
+		var pro_type1 = $("#pt1").val()
+		// console.log(Vpro_type1);
+		alert("pro_type1->"+pro_type1);
+		
+ 		$.ajax(
+			{
+				url:"<%=context%>/type2",	
+				data:{pro_type1 : pro_type1},
+				dataType:'json',
+				success:function(proType2List){
+					var proType2ListStr = JSON.stringify(proType2List);
+					alert("proType2ListStr->"+proType2ListStr);
+					// $('#pt2').append(proInfoTy2List);
+					str += "<select name='pro_type2'>";
+					$(proType2List).each(            /* foreach문 같음 */
+							function(){              /* 가져온 객체 만큼 돌려서 뿌려줌 */
+							  //str2 = " " + this.deptno + "' " +this.dname + "<br>";
+								str2 = "<option value=" + this.pro_type2 + ">"+this.pro_content + "</option>";
+								str += str2;
+							}		
+						);
+						str += "</select><p>"  /* select 태그는 콤보박스 */
+						$('#pt2').append(str); /* append 함수는 태그가 전체로 들어갈 수 있다. */
+
+				}
+			}
+		); 
+		
+	}
+
+</script>
+</head>
+<body>
+	<jsp:include page="/WEB-INF/views/base/header.jsp" flush="true">
+		<jsp:param value="" name=""/>
+	</jsp:include>
+		<br>
+		<h2 id="pageTitle"><b>상품 등록</b></h2>
+		<br>
+		<form action="productWrite" method="post" name="pbw" enctype="multipart/form-data"> <!-- pbw=productboardwrite -->
+			<div  class="productBoardWriteTable">
+			<table class="boardWriteTable">
+				<tr><th id="boardWriteLeft">상품 대분류&nbsp;&nbsp;</th><td>
+				<select name="pro_type1" id="pt1" onclick="ProInfotype()" >   <!-- 상품 대분류(pro_type1) -->
+					<c:forEach var="pro_type1" items="${proInfoTy1List}">
+						<option value="${pro_type1.pro_type1}">${pro_type1.pro_content}</option>
+					</c:forEach>
+				</select></td>
+			</tr>
+			
+			<tr><th id="boardWriteLeft">상품 중분류&nbsp;&nbsp;</th><td>
+			<div id="pt2">
+			
+			</div></tr>
+			
+			<tr><th id="boardWriteLeft"><input type="hidden" id="boardWriteRight" name="user_id" value="${user_id}"></td></tr>
+			<tr><th id="boardWriteLeft">상품 이름&nbsp;&nbsp;</th><td><input type="text" id="boardWriteRight" name="pro_title" required="required"></td></tr>
+			<tr><th id="boardWriteLeft">판매가격(원)&nbsp;&nbsp;</th><td><input type="number" id="boardWriteRight" name="pro_price" required="required"></td></tr>
+			<tr><th id="boardWriteLeft">상품판매 메인사진&nbsp;&nbsp;</th><td><input type="file" id="boardWriteRight" name="pro_photoImg" required="required"></td></tr>
+			<tr><th id="boardWriteLeft">상품 상세글&nbsp;&nbsp;</th><td><input type="text" id="boardWriteRight" name="pro_write" required="required">
+			<tr><th id="boardWriteLeft">상품판매 상세사진&nbsp;&nbsp;</th><td><input type="file"id="boardWriteRight"  name="pro_picImg" required="required"></td></tr>
+			<tr><th id="boardWriteLeft">재고&nbsp;&nbsp;</th><td><input type="number" id="boardWriteRight" name="amount" required="required"></td></tr>
+			<tr><td colspan="2"><input id="write_Submit_Button" type="submit" value="확인"></td></tr>
+			</table>
+			</div>
+		</form>
+	
+	
+	
+	
+	
+	<jsp:include page="/WEB-INF/views/base/footer.jsp" flush="true">
+		<jsp:param value="" name=""/>
+	</jsp:include>
+</body>
+</html>

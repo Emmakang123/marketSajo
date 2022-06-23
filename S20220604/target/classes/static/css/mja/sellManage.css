@@ -1,0 +1,40 @@
+@charset "UTF-8";
+
+#sidebar {
+	padding-top: 60px;
+	font-family: 'Noto Sans KR';
+}
+
+#main{
+	padding: 60px;
+	font-family: 'Noto Sans KR';
+}
+
+#day input{
+	text-decoration: none;
+	border: none;
+}
+#day a{
+	text-decoration: none;
+	border: none;
+	text-align: center;
+}
+
+#chart {
+	margin-bottom: 30px;
+}
+
+.sell {
+	padding: 5px;
+	background-color: #f4f1e9;
+	border-radius: 10px;
+}
+
+.sellDiv {
+	padding-bottom: 20px;
+}
+
+#selltbl {
+	text-align: center;
+}
+ 

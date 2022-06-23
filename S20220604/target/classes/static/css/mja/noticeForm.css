@@ -1,0 +1,46 @@
+@charset "UTF-8";
+
+#sidebar {
+	padding-top: 60px;
+	font-family: 'Noto Sans KR';
+}
+
+#main{
+	padding: 60px;
+	font-family: 'Noto Sans KR';
+}
+#notice {
+	padding-top: 60px; 
+}
+ 
+#notice  h3{
+	font-size: 30px;
+	font-weight: 1px;
+}
+
+#notice span {
+	color: grey;
+}
+
+#tbl th{
+	padding-left: 2px;
+	text-align: center;
+	background-color: #f4f1e9;
+	width: 100px;
+}
+
+#tbl td {
+	padding-left: 2px;
+	text-align: left;
+}
+#tbl a{
+	color: #1c3316;
+    text-decoration: none;
+    
+}
+
+#page a{
+	
+	color: grey;
+	text-decoration: none;
+}

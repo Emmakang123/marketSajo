@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+#photoImg {
+	max-width: 75px;
+}
+
+#myPage {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+#myPage h3{
+	font-size: 20px;
+	color: #1c3316;
+}
+
+#myPageTbl {
+	text-align: center;
+	vertical-align: top;
+}
+
+#myPageTbl input {
+	color: #b0d282; 
+}

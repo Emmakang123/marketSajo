@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+#sidebar {
+	padding-top: 60px;
+	font-family: 'Noto Sans KR';
+}
+
+#main{
+	padding: 60px;
+	font-family: 'Noto Sans KR';
+}
+
+.inner-form firsth {
+	float: left;
+	margin-bottom: 10x;
+}
+
+.inner-form second {
+	float: left;
+	margin-bottom: 10x;
+}
+div#one{
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+.excel {
+	float: right;
+}
+ div#two{
+ 	margin-top:10px;
+ 	text-align: center;
+ }
+ 
+#tableData {
+	text-align: center;
+}

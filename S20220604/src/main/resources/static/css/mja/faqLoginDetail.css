@@ -1,0 +1,35 @@
+@charset "UTF-8";
+
+.container{
+	font-family: 'Noto Sans KR';
+}
+#sidebar {
+	padding-top: 60px;
+	
+}
+ 
+#sidebar h4 {
+	font-size:25px;
+	font-weight: 2px;
+
+}
+ 
+#sidebar ul {
+	border: 1px;
+}
+
+#list {
+		padding-top: 60px;
+}
+#answer {
+	background-color: #f4f1e9;
+}
+
+#answer img {
+	width: 20px;
+	height: 20px;
+}
+
+#answerTbl {
+	margin-bottom: 30px;
+}
