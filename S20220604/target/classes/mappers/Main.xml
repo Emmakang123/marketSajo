@@ -129,4 +129,10 @@
 		<!--검색된 모든 로직을 적용시킨후에 페이징을 해줌  -->
 	</select>
 	
+	<!--메인 배너리스트-->
+	<select id="msBannerList" resultType="Banner">
+		select * from banner order by bn_num
+	
+	</select>
+	
 </mapper>

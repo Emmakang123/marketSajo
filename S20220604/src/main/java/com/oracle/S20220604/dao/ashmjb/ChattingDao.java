@@ -10,7 +10,9 @@ import com.oracle.S20220604.model.Product;
 public interface ChattingDao {
    Chatting       save(Chatting chatting);
 
-   int          total();
+   int          OpenChatTotal();
+   
+   int				ListTotal(Chatting chatting);
 
    List<Chatting>  openChatList(Chatting chatting);
 
@@ -31,4 +33,6 @@ public interface ChattingDao {
    void 			inChatWithConsumer(Participant pt);
 
    int 				findroomNum();
+
+List<Participant> selectParti3(int room_num);
 }

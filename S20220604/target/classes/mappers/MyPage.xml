@@ -27,8 +27,10 @@
 		FROM	mypage m, product pr, payment pa
 		WHERE	pr.pro_num = m.pro_num
 		AND		pa.pay_tot_num = m.pay_tot_num
+		AND     m.order_status != 3
+        AND     m.order_status != 5
 		AND     pa.user_id = #{user_id}
-		ORDER BY pay_tot_num desc
+		ORDER BY pay_date desc
 	</select>
 		
 	<update id="updatePkwShopperOrderList" parameterType="MyPageVO">
@@ -58,7 +60,7 @@
 		AND		pa.pay_tot_num = m.pay_tot_num
 		AND     m.order_status = 3
 		AND     pa.user_id = #{user_id}
-		ORDER BY pay_tot_num desc
+		ORDER BY pay_date desc
 	</select>
 		
 	<select id="pkwShopperPurchaseCompletedList" resultType="MyPageVO">
@@ -81,7 +83,7 @@
 		AND		pa.pay_tot_num = m.pay_tot_num
 		AND     m.order_status = 5
 		AND     pa.user_id = #{user_id}
-		ORDER BY pay_tot_num desc
+		ORDER BY pay_date desc
 	</select>
 		
 	<select id="pkwShopperMyCheckProductList" resultType="MyPageVO">
@@ -101,8 +103,8 @@
 				cp_category,
                 cp_name,
 				cp_price,
-				st_date,
-				end_date
+				TO_CHAR(st_date, 'yyyy-mm-dd') as st_date,
+				TO_CHAR(end_date, 'yyyy-mm-dd') as end_date
 		FROM	coupon
 		WHERE   user_id = #{user_id}
 		ORDER BY end_date
@@ -141,7 +143,7 @@
 			   ,DECODE(cl.chk, 0, '승인요청중'
 							 , 1, '관리자승인완료'
 							 , 2, '반려'
-							 , '-') as chk_nm				
+							 , ' ') as chk_nm				
 		FROM	member m
 			LEFT OUTER JOIN chk_level cl
 			ON cl.user_id = m.user_id
@@ -150,7 +152,7 @@
 	
 	<update id="updatePkwShopperMyProfile" parameterType="Member">
 		UPDATE	 member
-		set		 user_pw   		  = #{user_pw}
+		set		 user_pw     = #{user_pw}
 				,user_name   = #{user_name}
 				,email       = #{email}
 				,con_tel     = #{con_tel}
@@ -162,7 +164,7 @@
 				<!-- ,sell_name	 = #{sell_name} 
 				,sell_tel	 = #{sell_tel} 
 				,sell_photo  = #{sell_photo} 
-				,sell_num    = #{sell_3123num} 
+				,sell_num    = #{sell_num} 
 				,sell_addr1  = #{sell_addr1} 
 				,sell_addr2  = #{sell_addr2} -->
 		WHERE	user_id = #{user_id}
@@ -186,8 +188,10 @@
 		FROM	mypage m, product pr, payment pa
 		WHERE	pr.pro_num = m.pro_num
 		AND		pa.pay_tot_num = m.pay_tot_num
+		AND     m.order_status != 3
+        AND     m.order_status != 5
 		AND     pr.user_id = #{user_id}
-		ORDER BY pay_tot_num desc
+		ORDER BY pay_date desc
 	</select>
 	
 	<update id="updatePkwMakerOrderList" parameterType="MyPageVO">
@@ -217,7 +221,7 @@
 		AND		pa.pay_tot_num = m.pay_tot_num
 		AND     m.order_status = 3
 		AND     pr.user_id = #{user_id}
-		ORDER BY pay_tot_num desc
+		ORDER BY pay_date desc
 	</select>
 		
 	<select id="pkwMakerSellCompleteList" resultType="MyPageVO">
@@ -240,7 +244,7 @@
 		AND		pa.pay_tot_num = m.pay_tot_num
 		AND     m.order_status = 5
 		AND     pr.user_id = #{user_id}
-		ORDER BY pay_tot_num desc
+		ORDER BY pay_date desc
 	</select>
 	
 	<update id="updatePkwMakerMyProfile" parameterType="MyPageVO">
@@ -279,7 +283,7 @@
 		WHERE	user_id = #{user_id}
 	</select>
 	
-	<select id="pkwMakerMyProfileView" resultType="MyPageVO">
+	<select id="pkwMakerMyProfileView" resultType="Member">
 		SELECT 	 m.sell_name  
 	            ,m.sell_tel   
 	            ,m.sell_photo 

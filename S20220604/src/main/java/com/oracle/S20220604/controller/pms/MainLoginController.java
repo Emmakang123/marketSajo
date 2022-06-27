@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.oracle.S20220604.model.Banner;
 import com.oracle.S20220604.model.Member;
 import com.oracle.S20220604.model.Product;
 import com.oracle.S20220604.service.kge.Paging;
@@ -72,6 +73,11 @@ public class MainLoginController {
 		@RequestMapping(value = "main")  //메인페이지
 		   public String main(Product product, String curreuntPage, Model model) {
 		      System.out.println("MainLoginController product_bestTop4list Start...");
+		      //배너리스트
+		      List<Banner> bannerList = ms.bannerList();
+		      Banner b1 = bannerList.get(0);
+		      Banner b2 = bannerList.get(1);
+		      Banner b3 = bannerList.get(2);
 		      
 		      // 상품 목록 리스트 - 상품 갯수
 		      int total2 = ms.total2(product);
@@ -91,10 +97,16 @@ public class MainLoginController {
 			  for(Product product3 : listNew4Product) {
 				  System.out.println("MainLoginController product_newTop4list product2.getPro_title()->"+product3.getPro_title());  
 				  System.out.println("MainLoginController product_newTop4list product2.getPro_price()->"+product3.getPro_price());  
-				  System.out.println("MainLoginController product_newTop4list product2.getPro_price()->"+product3.getPro_photo());  
+ 				  System.out.println("MainLoginController product_newTop4list product2.getPro_price()->"+product3.getPro_photo());  
 		  } 
 			
-				  
+			  model.addAttribute("bannerList",bannerList);//메인 배너 리스트 (순서대로)
+			  System.out.println("MainLoginController bannerList->"+bannerList.size());  
+
+			  model.addAttribute("b1", b1);
+			  System.out.println("MainLoginController bannerList  b1->"+ b1);  
+			  model.addAttribute("b2", b2);
+			  model.addAttribute("b3", b3);
 		      model.addAttribute("product", product);
 		      model.addAttribute("product_bestTop4list", listBest4Product); //여기서 모델에 전체 리스트를 담아주는것-> 민서는 베스트, 뉴 따로 리스트 만들어야함
 		      model.addAttribute("product_newTop4list", listNew4Product); //여기서 모델에 전체 리스트를 담아주는것-> 민서는 베스트, 뉴 따로 리스트 만들어야함
@@ -192,6 +204,10 @@ public class MainLoginController {
 			@ResponseBody
 			public Member findPwCheck(HttpServletRequest request, Member member, Model model) {
 				System.out.println("MainLoginController findPwBtn Start..");
+				System.out.println("MainLoginController findPwBtn"+member.getUser_id());
+				System.out.println("MainLoginController findPwBtn"+member.getUser_name());
+				System.out.println("MainLoginController findPwBtn"+member.getEmail());
+
 				Member member5 = new Member();
 				member5 = ms.findPwCheck(member);
 				if(member5 != null) {

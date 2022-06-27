@@ -10,6 +10,11 @@
 	font-family: 'Noto Sans KR';
 }
 
+div#title {
+    font-size: 20px;
+    font-weight: 2px;
+}
+
 #day input{
 	text-decoration: none;
 	border: none;
@@ -31,10 +36,13 @@
 }
 
 .sellDiv {
-	padding-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    font-size: 20px;
 }
 
 #selltbl {
 	text-align: center;
+	font-size: 15px;
 }
  

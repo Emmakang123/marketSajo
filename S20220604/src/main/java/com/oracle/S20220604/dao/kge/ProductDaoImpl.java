@@ -359,6 +359,21 @@ public class ProductDaoImpl implements ProductDao {
 	
 	//3
 	// 여기에서는 insert문으로 basket_num값을 넣어준다
+
+	@Override
+	   public int CountBuy(Review review) {
+	      
+	      int CountBuy = 0;
+	      System.out.println("ReviewDaoImpl CountBuy Start ..." );
+	      try {
+	         CountBuy = session.selectOne("jshCountBuy", review);
+	      } catch (Exception e) {
+	         System.out.println("ReviewDaoImpl CountPersonalReview Exception->"+e.getMessage());
+	      }
+	      return CountBuy;
+	      
+	   }
+
 	
 }
 	

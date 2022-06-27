@@ -11,10 +11,12 @@
 }
 #notice {
 	padding-top: 60px; 
+	text-align: center;
+	margin-bottom: 20px;
 }
  
 #notice  h3{
-	font-size: 30px;
+	font-size: 25px;
 	font-weight: 1px;
 }
 
@@ -22,6 +24,9 @@
 	color: grey;
 }
 
+#tbl {
+	font-size: 15px;
+}
 #tbl th{
 	padding-left: 2px;
 	text-align: center;
@@ -39,8 +44,15 @@
     
 }
 
+#all {
+}
 #page a{
-	
 	color: grey;
 	text-decoration: none;
+	float: left;
+}
+#delete a {
+	color: grey;
+	text-decoration: none;
+	float: right;
 }

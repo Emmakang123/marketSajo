@@ -45,40 +45,32 @@ public class ChattingController {
    }
    
    @RequestMapping("/chat") // room_type : 1 or 2
-   public ModelAndView chat(HttpServletRequest request, Chatting chatting) {
+   public ModelAndView chat(HttpServletRequest request, Chatting chatting , String currentPage) {
 	   ModelAndView mv = new ModelAndView();
 	   if(request.getSession().getAttribute("sessionId") != null) {
 	      System.out.println("ChattingController chat start");
 	      String session_id = (String) request.getSession().getAttribute("sessionId");
-	         System.out.println("ChattingController chat session_id : "+session_id);
-	      if(session_id == null) {
-	         System.out.println("==null");
-	         request.getSession().setAttribute("sessionId", "namwoo");
-	         session_id = (String) request.getSession().getAttribute("sessionId");
-	      }
-	      
-	      else if(request.getSession().getAttribute("sessionId") != null){
-	         System.out.println("!=null");
-	         System.out.println("------------!=null session_id------"+session_id);
-	      }
-	      
-	     
-	      mv.addObject("user_id", request.getSession().getAttribute("sessionId").toString());
+	      System.out.println("ChattingController chat session_id : "+session_id);
+	      mv.addObject("user_id", session_id);
 	      System.out.println("chatting.getKeyword()=> "+chatting.getKeyword());
 	      chatting.setRoom_type(1);
 	      chatting.setRoom_type2(2);
 	      chatting.setUser_id(session_id);
 	      
 	      if(chatting.getKeyword() != null) {
+	    	  chatting.setUser_id(session_id);
 	         List<Chatting> keywordList =  cs.keywordList(chatting);
 	         System.out.println("chattingcontroller chat showList.size()-> "+ keywordList.size());
 	         mv.addObject("showList", keywordList);
 	      }else {
+	    	  
 	         List<Chatting> showList =  cs.showList(chatting);
 	         System.out.println("chattingcontroller chat showList.size()-> "+ showList.size());
 	         mv.addObject("showList", showList);
 	      }
-	//      List<Chatting> showList = cs.showList(user_id_test);
+	      
+	      int total = cs.ListTotal(chatting);
+	      Paging pg = new Paging(total, currentPage);
 	      
 	      mv.setViewName("/chatAshmjb/chatRoomMain");
 	      return mv;
@@ -97,16 +89,7 @@ public class ChattingController {
 	      
 	      String session_id = (String) request.getSession().getAttribute("sessionId");
 	      
-	      if(request.getSession().getAttribute("sessionId") == null) {
-	         System.out.println("user_id getSession ==null");
-	         request.getSession().setAttribute("sessionId", "namwoo");
-	      }
-	      else if(request.getSession().getAttribute("sessionId") != null){
-	         System.out.println("user_id getSession !=null");
-	      }
-	      
-	      
-	      mv.addObject("user_id", request.getSession().getAttribute("sessionId").toString());
+	      mv.addObject("user_id", session_id);
 	      chatting.setRoom_type(3);
 	      chatting.setRoom_type2(0);
 	      chatting.setUser_id(session_id);
@@ -200,20 +183,11 @@ public class ChattingController {
       return savedName;
    }
    
-   
-   @RequestMapping(value="test02")
-   public ModelAndView test02()  {
-      ModelAndView mv = new ModelAndView();
-      
-      mv.setViewName("/chatAshmjb/test02");
-      return mv;
-   }
-   
    @RequestMapping(value = "openChatList")
    public ModelAndView list(Chatting chatting , String currentPage) {
       logger.info("list Start ... ");
       ModelAndView mv = new ModelAndView();
-      int total = cs.total(); // Emp Count 
+      int total = cs.OpenChatTotal(); // Emp Count 
       // empdao에 토탈을 불러오니까 그 토탈이 몇개더라
       Paging pg = new Paging(total, currentPage);
       chatting.setStart(pg.getStart()); // 시작시 1
@@ -237,6 +211,7 @@ public class ChattingController {
 			System.out.println("msgnaeyong.get(0).getsend_user_id"+msgnaeyong.get(0).getSend_user_id());
 			System.out.println("msgnaeyong.get(0).getRoom_num()->"+msgnaeyong.get(0).getRoom_num());
 			System.out.println("msgnaeyong.size()->"+msgnaeyong.size());
+			System.out.println("msgnaeyong.get(0),getMsg_time() -> "+msgnaeyong.get(0).getMsg_time());
 	   }catch (NullPointerException e) {
 		   System.out.println(e.getMessage());
 	   }catch (IndexOutOfBoundsException e1) {
@@ -327,29 +302,11 @@ public class ChattingController {
          product.setPro_num(pro_num);
          product.setUser_id(p_pro_user_id);
          product.setPro_title(pro_title);
-         // dao에서 select 문 만들어서 
          System.out.println("ChattingController chatWithCeller product.getPro_title : "+ product.getPro_title());
          System.out.println("ChattingController chatWithCeller 판매자 ID product.getUser_id : "+ product.getUser_id());
          System.out.println("ChattingController chatWithCeller 로그인 ID product.getLogin_user_id : " + product.getLogin_user_id() );
          
          cs.insertChatWithCeller(product); // 이름은 바꿔도 됨
-         Participant pt = new Participant();
-         pt.setCon_user_id(p_pro_user_id);
-         pt.setUser_id(user_id);
-         int room_num = cs.findroomNum();
-         pt.setRoom_num(room_num);
-         System.out.println("ChattingController pt에 room_num max로 조회"+pt.getRoom_num());
-         ReadCheck rc = new ReadCheck();
-         rc.setRoom_num(pt.getRoom_num());
-         System.out.println("rc.getRoom_num() -> "+rc.getRoom_num());
-         rc.setUser_id(user_id);
-         System.out.println("rc.getUser_id() -> "+rc.getUser_id());
-         rc.setRead(0);
-         System.out.println("rc.getRead() -> "+rc.getRead());
-         int result = FirstInsertReadCheckMe(rc);
-         rc.setUser_id(p_pro_user_id);
-         rc.setRead(1);
-         int resultother = FirstInsertReadCheckOther(rc);
          mv.setViewName("redirect:chat1");
          return mv;
          
@@ -360,7 +317,7 @@ public class ChattingController {
          ModelAndView mv = new ModelAndView();
           System.out.println("ChattingController chatWithCeller Start... ");
           String user_id = (String) request.getSession().getAttribute("sessionId");
-          String con_user_id = "min2523"; // 리뷰 쓴사람 하드코딩
+          String con_user_id = request.getParameter("user_id");
           Participant pt = new Participant();
           pt.setUser_id(user_id);
           pt.setCon_user_id(con_user_id);
@@ -368,24 +325,26 @@ public class ChattingController {
           System.out.println("ChattingController chatWithConsumer 리뷰 ID pt.getCon_user_id() : "+ pt.getCon_user_id());
           
           cs.inChatWithConsumer(pt);
-         
-          System.out.println(pt.getRoom_num());
-          ReadCheck rc = new ReadCheck();
-          rc.setRoom_num(pt.getRoom_num());
-          System.out.println("rc.getRoom_num() -> "+rc.getRoom_num());
-          rc.setUser_id(user_id);
-          System.out.println("rc.getUser_id() -> "+rc.getUser_id());
-          rc.setRead(0);
-          System.out.println("rc.getRead() -> "+rc.getRead());
-          int result = FirstInsertReadCheckMe(rc);
-          rc.setUser_id(con_user_id);
-          rc.setRead(1);
-          int resultother = FirstInsertReadCheckOther(rc);
-         
+          
           mv.setViewName("redirect:chat");
           return mv;
       }
-      
+      @RequestMapping(value="/participant3")
+      public List<Participant> parti3(int room_num){
+         System.out.println("Chatting Controller parti Start");
+         List<Participant> selectParti3 = null;
+         try {
+            selectParti3 = cs.selectParti3(room_num);
+            for(int i=0; i>selectParti3.size(); i++) {
+               System.out.println("Chatting Controller participant getUser_id -> "+selectParti3.get(i).getUser_id());
+            }	
+         } catch (Exception e) {
+            System.out.println(e.getMessage());
+         }
+         System.out.println("Chatting Controller parti End");
+         return selectParti3;
+      }
+     /* 
       public int FirstInsertReadCheckMe (ReadCheck rc) {
     	  System.out.println("실행성공.");
     	  int result = rs.insertMe(rc);
@@ -397,5 +356,5 @@ public class ChattingController {
     	  int result = rs.insertOther(rc);
     	  return result;
       }
-   
+   */
 }

@@ -538,7 +538,7 @@ public class MyPageController {
 		}
 		
 	
-	// 판매자모드_마이프로필 뷰 전용 페이지
+/*	// 판매자모드_마이프로필 뷰 전용 페이지
 	@RequestMapping(value = "makerMyProfileView")
 	public String makerMyProfileView(MyPageVO mypagevo, Model model, HttpServletRequest request) {
 		System.out.println("MyPageController Start makerMyProfileView...");
@@ -566,8 +566,39 @@ public class MyPageController {
 		model.addAttribute("listSize", listSize);
 		
 		return "myPagePkw/makerMyProfileView";
-	}
+		
+	} */
 	
+	// 판매자모드_마이프로필 뷰 전용 페이지
+	@RequestMapping(value = "makerMyProfileView")
+	public String makerMyProfileView(MyPageVO mypagevo, Model model, HttpServletRequest request) {
+		System.out.println("MyPageController Start makerMyProfileView...");
+		String ID = (String) request.getSession().getAttribute("sessionId");
+		List<MyPageVO> makerMyProfileView = null;
+		List<MyPageVO> listMakerOrder = null;
+		int listSize = 0;
+		System.out.println("처음들어올때 mypagevo.getUser_id : " + mypagevo.getUser_id());
+		if (null != mypagevo.getUser_id() && !"".equals(mypagevo.getUser_id())) {
+			makerMyProfileView = mp.makerMyProfileView(mypagevo);
+			listSize = makerMyProfileView.size();
+			listMakerOrder = mp.listMakerOrder(mypagevo); // 상품목록
+		}
+		else if (null == ID || "".equals(ID)) {
+			System.out.println("######### ID : 로그인이 필요합니다.");
+			return "redirect:/login";
+		}
+		else {
+			makerMyProfileView = new ArrayList<MyPageVO>();
+			System.out.println("######### ID : 판매자 선택이 안되었습니다.");
+			return "redirect:/login";
+		}
+		System.out.println("MyPageController makerMyProfileView.size()" + makerMyProfileView.size());
+		model.addAttribute("makerMyProfileView", makerMyProfileView);
+		model.addAttribute("listMakerOrder", listMakerOrder);
+		model.addAttribute("listSize", listSize);
+		
+		return "myPagePkw/makerMyProfileView";
+	}
 
 	
 }

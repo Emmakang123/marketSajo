@@ -12,14 +12,16 @@ public interface ChattingService {
 
 	int 			insertparticipant(Chatting chatting);
 	
-	int 		   total();
+	int 		   OpenChatTotal();
+	
+	int				ListTotal(Chatting chatting);
 
 	List<Chatting> openChatList(Chatting chatting);
 
 	List<Chatting>	showList(Chatting chatting);
 
 	List<Message> 	msgnaeyong(int room_num);
-
+	
 	void			insertParti(Participant parti);
 
 	List<Chatting>  keywordList(Chatting chatting);
@@ -31,6 +33,8 @@ public interface ChattingService {
 	void 			inChatWithConsumer(Participant pt);
 
 	int 			findroomNum();
+
+	List<Participant> selectParti3(int room_num);
 
 
 }

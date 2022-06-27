@@ -237,6 +237,14 @@ public class ProductServiceImpl implements ProductService {
 //	} 
 
 //
+	@Override
+	   public int CountBuy(Review review) {
+	      System.out.println("ReviewServiceImpl CountBuy ...");
+	      int CountBuy = 0;
+	      CountBuy = pd.CountBuy(review);
+	      
+	      return CountBuy;
+	   }
 
 }
 

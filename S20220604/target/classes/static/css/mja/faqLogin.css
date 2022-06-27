@@ -12,21 +12,38 @@
 	font-weight: 2px;
 
 }
- 
-#sidebar ul {
-	border: 1px;
+
+a.link-dark.rounded {
+    text-decoration: none;
+    padding: 10px;
+} 
+
+input#floatingInput {
+    margin-bottom: 10px;
+} 
+input#floatingPassword {
+    margin-bottom: 10px;
+} 
+.login {
+	padding-top: 100px;
+	margin: 0 auto;
+	padding-bottom:10px;
+	font-size: 15px;
+}
+.login h4 {
+	font-size: 20px;
+	color: #1c3316;
+	
 }
 
-.login {
-	padding-bottom: 10px;
-}
-.Loginbtn {
-	margin-bottom: 30px;
+#Loginbtn {
+	margin-bottom: 80px;
 	text-align: center;
+	border: none;
+	float: right;
+	background-color: #f4f1e9;
+	width: 100px;
+	border-radius: 10px;
 }
-#pass {
-	padding-bottom: 10px;
-}
-.Loginbtn button {
-	background-color: #b0d282;
-}
+
+ 

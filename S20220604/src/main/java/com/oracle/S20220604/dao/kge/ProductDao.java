@@ -32,5 +32,6 @@ public interface ProductDao {
 	int                  DeleteReview(Review review); // review(시환)
 	int                  ReviewInsert(Review review); // review(시환)
 	int                  ReviewUpdate(Review review); // review(시환)
+	int CountBuy		(Review review);
 
 }

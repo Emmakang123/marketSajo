@@ -54,17 +54,27 @@ public class ChattingDaoImpl implements ChattingDao {
    }
 
    @Override
-   public int total() {
+   public int OpenChatTotal() {
       int tot = 0;
       System.out.println("ChattingDaoImpl Start total...");
       try {
-         tot = session.selectOne("akChattingTotal");
+         tot = session.selectOne("akChattingOpenChatTotal");
       } catch (Exception e) {
          System.out.println("ChattingDaoImpl total selectOne error -> "+ e.getMessage());
       }
       return tot;
    }
-
+   
+   @Override
+   public int ListTotal(Chatting chatting) {
+	   int tot = 0;
+	   try {
+		   tot = session.selectOne("akChattingTotal", chatting);
+	   }catch (Exception e) {
+		   System.out.println("ChattingDaoImpl ListTotal selectOne error -> "+ e.getMessage());
+	   }
+	   return tot;
+   }
    @Override
    public List<Chatting> openChatList(Chatting chatting) {
       List<Chatting> openChatList = null;
@@ -110,9 +120,9 @@ public class ChattingDaoImpl implements ChattingDao {
       List<Message> msgnaeyong = null;
       System.out.println("ChattingDaoImpl msgnaeyong start");
       try {
-         System.out.println("ChattingDaoImpl start room_num : "+ room_num);
+         System.out.println("ChattingDaoImpl star room_num : "+ room_num);
          msgnaeyong = session.selectList("akMsgNaeYong", room_num);
-         System.out.println("ChattingDaoImpl msgnaeyong msgnaeyong.get(5) 시간 : "+msgnaeyong.get(0).getMmsg_time());
+         System.out.println("ChattingDaoImpl msgnaeyong msgnaeyong.get(5) : "+msgnaeyong.get(0).getMmsg_time());
          System.out.println("ChattingDaoImpl after msgnaeyong.size()->"+msgnaeyong.size());
          
       } catch (Exception e) {
@@ -125,6 +135,7 @@ public class ChattingDaoImpl implements ChattingDao {
    public List<Chatting> keywordList(Chatting chatting) {
       List<Chatting> keywordList = null;
       System.out.println("ChattingDaoImpl keywordList Start...");
+//      if(chatting.getKeyword() == null) chatting.setKeyword("%");
       try {
          keywordList = session.selectList("akKeywordList", chatting);
          System.out.println("ChattingDaoImpl after keywordList -> "+ keywordList.size());
@@ -197,11 +208,24 @@ public class ChattingDaoImpl implements ChattingDao {
 
 	@Override
 	public int findroomNum() {
-		
 		int result = session.selectOne("akFindRoom_num");
-		
-		
 		return result;
 	}
-
+   @Override
+   public List<Participant> selectParti3(int room_num) {
+      List<Participant> selectParti3 = null;
+      
+      System.out.println("Chatting Dao parti start");
+       try {
+          System.out.println("ChattingDaoImpl parti room_num : "+ room_num);
+          selectParti3 = session.selectList("akSelectParti3", room_num);
+          
+          System.out.println("ChattingDaoImpl parti.size()->"+selectParti3.size());
+          
+       } catch (Exception e) {
+          System.out.println("ChattingDaoImpl parti Exception..->"+ e.getMessage());
+       }
+       System.out.println("Chatting Dao parti End");
+       return selectParti3;
+   }
 }

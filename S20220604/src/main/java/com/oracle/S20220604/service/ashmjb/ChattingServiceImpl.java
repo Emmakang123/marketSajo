@@ -45,13 +45,20 @@ public class ChattingServiceImpl implements ChattingService {
 		return chatting.getRoom_num();
 	}
 	@Override
-	public int total() {
+	public int OpenChatTotal() {
 		System.out.println("ChattingServiceImpl start total...");
-		int totCnt = chattingDao.total();
+		int totCnt = chattingDao.OpenChatTotal();
 		
 		logger.info("total" + totCnt);
 		return totCnt;
 	
+	}
+	
+	@Override
+	public int ListTotal(Chatting chatting) {
+		int totCnt = chattingDao.ListTotal(chatting);
+		
+		return totCnt;
 	}
 
 	@Override
@@ -129,8 +136,13 @@ public class ChattingServiceImpl implements ChattingService {
 
 	@Override
 	public int findroomNum() {
-
 		return chattingDao.findroomNum();
 	}
-
+   @Override
+   public List<Participant> selectParti3(int room_num) {
+      System.out.println("Chatting Service parti Start");
+      List<Participant> selectParti3 = chattingDao.selectParti3(room_num);
+      System.out.println("Chatting Service parti End");
+      return selectParti3;
+   }
 }

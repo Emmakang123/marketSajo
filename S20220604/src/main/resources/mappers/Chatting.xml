@@ -2,16 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.oracle.S20220604.ChattingMapper">
-	<select id="akChattingTotal" resultType="int">
-		select count(*) from
-		chatting
+	<select id="akChattingTotal" parameterType="Chatting" resultType="int">
+		select 	count(*) 
+		from	chatting
+		<choose>
+			<when test="room_type != 3">where room_type = 1 or room_type = 2</when>
+		</choose>
+		<choose>
+			<when test="room_type == 3">where room_type = 3</when>
+		</choose>
+	</select>
+	
+	<select id="akChattingOpenChatTotal" resultType="int">
+		select 	count(*)
+		from	chatting
+		where	room_type = 2		
 	</select>
 	
 	<select id="akChattingList" parameterType="Chatting" resultType="Chatting">
 		select *
 		from (
 		select rownum rn, a.*
-		from (select * from chatting where room_type = 1 or room_type = 2 order by room_num desc) a
+		from (select * from chatting where  room_type = 2 order by room_num desc) a
 		)
 		where rn between #{start} and #{end}
 	</select>
@@ -55,9 +67,11 @@
 	</select>
 	
 	<select id="akSelectParti" parameterType="int" resultType="Participant">
-		select		*
-		from		participant
-		where		room_num = #{room_num}
+		select		distinct p.*
+		from		participant p, chatting c
+		where		p.room_num = c.room_num
+		and			p.room_num = #{room_num}
+		and			c.room_type = 1
 	</select>
 	
 	<select id="akKeywordList" parameterType="Chatting" resultType="Chatting">
@@ -97,5 +111,12 @@
    <select id="akFindRoom_num" resultType="int">
    		select max(room_num)
 		from participant
+   </select>
+      <select id="akSelectParti3" parameterType="int" resultType="Participant">
+      select      distinct p.*
+      from      participant p, chatting c
+      where      p.room_num = c.room_num
+      and         p.room_num = #{room_num}
+      and         c.room_type = 3
    </select>
 </mapper>

@@ -199,6 +199,7 @@ public class ProductController {
       //-->리뷰 관련(시환)
       int CheckUser = 0;
       int CountPersonalReview = 0;
+      int CountBuy = 0;
       Review review = new Review();
       List<Review> SearchforUpdate = new ArrayList<Review>(); // <-- 리뷰 관련(시환)
       
@@ -211,6 +212,7 @@ public class ProductController {
          review.setUser_id(user_id);
          
          CountPersonalReview = ps.CountPersonalReview(review);
+         CountBuy = ps.CountBuy(review);
          System.out.println("[ProductController productDetails] CountPersonalReview->"+CountPersonalReview);
          SearchforUpdate = ps.SearchforUpdate(review);
          model.addAttribute("user_id", user_id);
@@ -238,6 +240,7 @@ public class ProductController {
       
       
       //--> review(시환)
+      model.addAttribute("CountBuy", CountBuy);
       model.addAttribute("memberPic", memberPic);
       model.addAttribute("SearchforUpdate", SearchforUpdate);
       model.addAttribute("CheckUser", CheckUser);
@@ -365,7 +368,7 @@ public class ProductController {
    
 //   상품 목록을 최신순에 맞혀서 정렬하기 logic
    @RequestMapping(value = "/changeAllignmentNewest")
-   public String changeAllignmentNewest(Product product, String curreuntPage, Model model) {
+   public String changeAllignmentNewest(Product product, String currentPage, Model model) {
       System.out.println("[ProductController changeAllignmentNewest] Start...");
       System.out.println("[ProductController changeAllignmentNewest] product.getPro_type1()" + product.getPro_type1());
       System.out.println("[ProductController changeAllignmentNewest] product.getPro_type2()" + product.getPro_type2());
@@ -374,7 +377,7 @@ public class ProductController {
       // 상품 목록 리스트 - 상품 갯수
       int total = ps.total(product);
       int pro_type1 = 0;
-      Paging pg = new Paging(total, curreuntPage);
+      Paging pg = new Paging(total, currentPage);
       product.setStart(pg.getStart());
       product.setEnd(pg.getEnd());
       
@@ -399,7 +402,7 @@ public class ProductController {
    
 //   상품 목록을 최저가순에 맞혀서 정렬하기 logic
    @RequestMapping(value = "/changeAllignmentLowest")
-   public String changeAllignmentLowest(Product product, String curreuntPage, Model model) {
+   public String changeAllignmentLowest(Product product, String currentPage, Model model) {
       System.out.println("[ProductController changeAllignmentLowest] Start...");
       System.out.println("[ProductController changeAllignmentLowest] product.getPro_type1()" + product.getPro_type1());
       System.out.println("[ProductController changeAllignmentLowest] product.getPro_type2()" + product.getPro_type2());
@@ -408,7 +411,7 @@ public class ProductController {
       // 상품 목록 리스트 - 상품 갯수
       int total = ps.total(product);
       int pro_type1 = 0;
-      Paging pg = new Paging(total, curreuntPage);
+      Paging pg = new Paging(total, currentPage);
       product.setStart(pg.getStart());
       product.setEnd(pg.getEnd());
       
@@ -432,7 +435,7 @@ public class ProductController {
    
 //   상품 목록을 최고가순에 맞혀서 정렬하기 logic
    @RequestMapping(value = "/changeAllignmentHighest")
-   public String changeAllignmentHighest(Product product, String curreuntPage, Model model) {
+   public String changeAllignmentHighest(Product product, String currentPage, Model model) {
       System.out.println("[ProductController changeAllignmentHighest] Start...");
       System.out.println("[ProductController changeAllignmentHighest] product.getPro_type1()" + product.getPro_type1());
       System.out.println("[ProductController changeAllignmentHighest] product.getPro_type2()" + product.getPro_type2());
@@ -441,7 +444,7 @@ public class ProductController {
       // 상품 목록 리스트 - 상품 갯수
       int total = ps.total(product);
       int pro_type1 = 0;
-      Paging pg = new Paging(total, curreuntPage);
+      Paging pg = new Paging(total, currentPage);
       product.setStart(pg.getStart());
       product.setEnd(pg.getEnd());
       
@@ -526,8 +529,12 @@ public class ProductController {
           logger.info("uploadPath: " + uploadPath);
           String savedName1 = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
           logger.info("savedName1: " + savedName1);
-          review.setRe_pic(savedName1);
-          ps.ReviewUpdate(review);
+          if(file.getSize() == 0) {
+              ps.ReviewUpdate(review);
+           }else {
+              review.setRe_pic(savedName1);
+               ps.ReviewUpdate(review);
+           }
           return "forward:/productDetails";
         }    
 

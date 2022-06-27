@@ -6,56 +6,30 @@
 }
 
 #main{
-	padding: 60px;
+	padding: 100px;
 	font-family: 'Noto Sans KR';
 }
 
-#one {
+#subject {
+	font-size: 25px;
 	margin-bottom: 10px;
 }
+#writeTbl input{
+	border:none;
+	text-decoration: none;
 
-#member h3 {
-	font-size: 20px;
-	color: #1c3316;
-}
-
-#memberStatus {
-	align-items: center;
-}
- 
- 
-#one {
-	margin-bottom: 10px;
-}
-#memberStatus h3 {
-	font-size: 15px;
-}
-#seller {
-	margin-top: 20px;
-	margin-bottom: 20px;
 }
 
-#seller h3{
-	font-size: 20px;
-	color: #1c3316;
+#writeTbl textarea {
+	resize: none;
+	border: none;
 }
-
-#sellTbl {
+#submit {
 	text-align: center;
+	border: 1px solid #b0d282;
+	color: #b0d282;
+	background-color: white;
+	border-radius: 10px;
+	margin: 0 auto;
 }
-
-#sellTbl input {
-	color: #b0d282; 
-}
-#new {
-	margin-bottom: 20px;
-}
-#date {
-	float: left;
-	font-size: 15px;
-}
-
  
-#newtbl {
-	text-align: center;
-}

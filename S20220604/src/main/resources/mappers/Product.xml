@@ -250,6 +250,12 @@
       select m.user_photo from member m, review r where r.pro_num = #{pro_num} and r.user_id = m.user_id
     </select> 
 	
+	<!-- review(시환) -->
+	<select id="jshCountBuy" parameterType="Review" resultType="int">
+      select count(m.quantity) from payment p, MYPAGE m  
+      where m.pro_num = #{pro_num} and p.user_id = #{user_id} and p.pay_tot_num = m.pay_tot_num and m.purchase_status = 1
+	</select>
+	
 	
 	
 

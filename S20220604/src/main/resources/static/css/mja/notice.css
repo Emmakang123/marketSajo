@@ -13,9 +13,11 @@
 
 }
  
-#sidebar ul {
-	border: 1px;
-}
+
+a.link-dark.rounded {
+    text-decoration: none;
+    padding: 10px;
+} 
 
 #notice {
 	padding-top: 60px;
@@ -34,6 +36,18 @@
 	height: 2px;
 }
 #tbl th{
+	text-align: center;
+}
+#tbl td:nth-child(1){
+	text-align: center;
+}
+#tbl td:nth-child(3){
+	text-align: center;
+}
+#tbl td:nth-child(4){
+	text-align: center;
+}
+#tbl td:nth-child(5){
 	text-align: center;
 }
 #tbl a{
