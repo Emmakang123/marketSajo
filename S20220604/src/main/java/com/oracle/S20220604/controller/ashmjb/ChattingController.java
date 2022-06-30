@@ -46,74 +46,74 @@ public class ChattingController {
    
    @RequestMapping("/chat") // room_type : 1 or 2
    public ModelAndView chat(HttpServletRequest request, Chatting chatting , String currentPage) {
-	   ModelAndView mv = new ModelAndView();
-	   if(request.getSession().getAttribute("sessionId") != null) {
-	      System.out.println("ChattingController chat start");
-	      String session_id = (String) request.getSession().getAttribute("sessionId");
-	      System.out.println("ChattingController chat session_id : "+session_id);
-	      mv.addObject("user_id", session_id);
-	      System.out.println("chatting.getKeyword()=> "+chatting.getKeyword());
-	      chatting.setRoom_type(1);
-	      chatting.setRoom_type2(2);
-	      chatting.setUser_id(session_id);
-	      
-	      if(chatting.getKeyword() != null) {
-	    	  chatting.setUser_id(session_id);
-	         List<Chatting> keywordList =  cs.keywordList(chatting);
-	         System.out.println("chattingcontroller chat showList.size()-> "+ keywordList.size());
-	         mv.addObject("showList", keywordList);
-	      }else {
-	    	  
-	         List<Chatting> showList =  cs.showList(chatting);
-	         System.out.println("chattingcontroller chat showList.size()-> "+ showList.size());
-	         mv.addObject("showList", showList);
-	      }
-	      
-	      int total = cs.ListTotal(chatting);
-	      Paging pg = new Paging(total, currentPage);
-	      
-	      mv.setViewName("/chatAshmjb/chatRoomMain");
-	      return mv;
-	   }
-	   else {
-		   mv.setViewName("/mainLoginPms/login");
-		   return mv;
-	   }
+      ModelAndView mv = new ModelAndView();
+      if(request.getSession().getAttribute("sessionId") != null) {
+         System.out.println("ChattingController chat start");
+         String session_id = (String) request.getSession().getAttribute("sessionId");
+         System.out.println("ChattingController chat session_id : "+session_id);
+         mv.addObject("user_id", session_id);
+         System.out.println("chatting.getKeyword()=> "+chatting.getKeyword());
+         chatting.setRoom_type(1);
+         chatting.setRoom_type2(2);
+         chatting.setUser_id(session_id);
+         
+         if(chatting.getKeyword() != null) {
+            chatting.setUser_id(session_id);
+            List<Chatting> keywordList =  cs.keywordList(chatting);
+            System.out.println("chattingcontroller chat showList.size()-> "+ keywordList.size());
+            mv.addObject("showList", keywordList);
+         }else {
+            
+            List<Chatting> showList =  cs.showList(chatting);
+            System.out.println("chattingcontroller chat showList.size()-> "+ showList.size());
+            mv.addObject("showList", showList);
+         }
+         
+         int total = cs.ListTotal(chatting);
+         Paging pg = new Paging(total, currentPage);
+         
+         mv.setViewName("/chatAshmjb/chatRoomMain");
+         return mv;
+      }
+      else {
+         mv.setViewName("/mainLoginPms/login");
+         return mv;
+      }
    }
    
    @RequestMapping("/chat1") // room_type : 3
    public ModelAndView chat1(HttpServletRequest request, Chatting chatting) {
-	   ModelAndView mv = new ModelAndView();
-	   if(request.getSession().getAttribute("sessionId") != null) {
-	      System.out.println("ChattingController chat1 판매자와채팅 start");
-	      
-	      String session_id = (String) request.getSession().getAttribute("sessionId");
-	      
-	      mv.addObject("user_id", session_id);
-	      chatting.setRoom_type(3);
-	      chatting.setRoom_type2(0);
-	      chatting.setUser_id(session_id);
-	      
-	      System.out.println("user_id"+ session_id);
-	      
-	      if(chatting.getKeyword() != null) {
-	         List<Chatting> keywordList =  cs.keywordList(chatting);
-	         System.out.println("chattingcontroller chat showList.size()-> "+ keywordList.size());
-	         mv.addObject("showList", keywordList);
-	      }else {
-	         List<Chatting> showList =  cs.showList(chatting);
-	         if(showList != null) {
-	            System.out.println("chattingcontroller chat showList.size()-> "+ showList.size());
-	         }
-	         mv.addObject("showList", showList);
-	      }
-	      mv.setViewName("/chatAshmjb/chatRoomMain");
-	      return mv;
-	   }
-	   else {
-		   mv.setViewName("/mainLoginPms/login.jsp");
-		   return mv;
-	   }
+      ModelAndView mv = new ModelAndView();
+      if(request.getSession().getAttribute("sessionId") != null) {
+         System.out.println("ChattingController chat1 판매자와채팅 start");
+         
+         String session_id = (String) request.getSession().getAttribute("sessionId");
+         
+         mv.addObject("user_id", session_id);
+         chatting.setRoom_type(3);
+         chatting.setRoom_type2(0);
+         chatting.setUser_id(session_id);
+         
+         System.out.println("user_id"+ session_id);
+         
+         if(chatting.getKeyword() != null) {
+            List<Chatting> keywordList =  cs.keywordList(chatting);
+            System.out.println("chattingcontroller chat showList.size()-> "+ keywordList.size());
+            mv.addObject("showList", keywordList);
+         }else {
+            List<Chatting> showList =  cs.showList(chatting);
+            if(showList != null) {
+               System.out.println("chattingcontroller chat showList.size()-> "+ showList.size());
+            }
+            mv.addObject("showList", showList);
+         }
+         mv.setViewName("/chatAshmjb/chatRoomMain");
+         return mv;
+      }
+      else {
+         mv.setViewName("/mainLoginPms/login.jsp");
+         return mv;
+      }
    }
    
    @RequestMapping(value="profileCreate")
@@ -151,7 +151,7 @@ public class ChattingController {
           savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
       }
       else {
-    	  savedName = "defaultChatImg.png";
+         savedName = "defaultChatImg.png";
       }
       System.out.println("savedName : "+savedName);
       chatting.setPic_change(savedName);
@@ -204,36 +204,36 @@ public class ChattingController {
    
    @RequestMapping(value = "/chatnaeyong")
    public List<Message> chatnaeyong(int room_num) {
-	   List<Message> msgnaeyong = null;
-	   try {
-		   	logger.info("chatnaeyong msgnaeyong room_num-> "+room_num);
-			msgnaeyong = cs.msgnaeyong(room_num);
-			System.out.println("msgnaeyong.get(0).getsend_user_id"+msgnaeyong.get(0).getSend_user_id());
-			System.out.println("msgnaeyong.get(0).getRoom_num()->"+msgnaeyong.get(0).getRoom_num());
-			System.out.println("msgnaeyong.size()->"+msgnaeyong.size());
-			System.out.println("msgnaeyong.get(0),getMsg_time() -> "+msgnaeyong.get(0).getMsg_time());
-	   }catch (NullPointerException e) {
-		   System.out.println(e.getMessage());
-	   }catch (IndexOutOfBoundsException e1) {
-		   System.out.println(e1.getMessage());
-	   }
-	   return msgnaeyong;
+      List<Message> msgnaeyong = null;
+      try {
+            logger.info("chatnaeyong msgnaeyong room_num-> "+room_num);
+         msgnaeyong = cs.msgnaeyong(room_num);
+         System.out.println("msgnaeyong.get(0).getsend_user_id"+msgnaeyong.get(0).getSend_user_id());
+         System.out.println("msgnaeyong.get(0).getRoom_num()->"+msgnaeyong.get(0).getRoom_num());
+         System.out.println("msgnaeyong.size()->"+msgnaeyong.size());
+         System.out.println("msgnaeyong.get(0),getMsg_time() -> "+msgnaeyong.get(0).getMsg_time());
+      }catch (NullPointerException e) {
+         System.out.println(e.getMessage());
+      }catch (IndexOutOfBoundsException e1) {
+         System.out.println(e1.getMessage());
+      }
+      return msgnaeyong;
    }
    
    @RequestMapping(value="/participant")
    public List<Participant> parti(int room_num){
-	   System.out.println("Chatting Controller parti Start");
-	   List<Participant> selectParti = null;
-	   try {
-		   selectParti = cs.selectParti(room_num);
-		   for(int i=0; i>selectParti.size(); i++) {
-			   System.out.println("Chatting Controller participant getUser_id -> "+selectParti.get(i).getUser_id());
-		   }
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-	   System.out.println("Chatting Controller parti End");
-	   return selectParti;
+      System.out.println("Chatting Controller parti Start");
+      List<Participant> selectParti = null;
+      try {
+         selectParti = cs.selectParti(room_num);
+         for(int i=0; i>selectParti.size(); i++) {
+            System.out.println("Chatting Controller participant getUser_id -> "+selectParti.get(i).getUser_id());
+         }
+      } catch (Exception e) {
+         System.out.println(e.getMessage());
+      }
+      System.out.println("Chatting Controller parti End");
+      return selectParti;
    }
    
    @Getter
@@ -337,7 +337,7 @@ public class ChattingController {
             selectParti3 = cs.selectParti3(room_num);
             for(int i=0; i>selectParti3.size(); i++) {
                System.out.println("Chatting Controller participant getUser_id -> "+selectParti3.get(i).getUser_id());
-            }	
+            }
          } catch (Exception e) {
             System.out.println(e.getMessage());
          }
@@ -346,15 +346,15 @@ public class ChattingController {
       }
      /* 
       public int FirstInsertReadCheckMe (ReadCheck rc) {
-    	  System.out.println("실행성공.");
-    	  int result = rs.insertMe(rc);
-    	  return result;
+         System.out.println("실행성공.");
+         int result = rs.insertMe(rc);
+         return result;
       }
    
       public int FirstInsertReadCheckOther (ReadCheck rc) {
-    	  System.out.println("실행성공.");
-    	  int result = rs.insertOther(rc);
-    	  return result;
+         System.out.println("실행성공.");
+         int result = rs.insertOther(rc);
+         return result;
       }
    */
 }

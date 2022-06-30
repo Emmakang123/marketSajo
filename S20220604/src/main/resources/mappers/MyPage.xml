@@ -247,7 +247,7 @@
 		ORDER BY pay_date desc
 	</select>
 	
-	<update id="updatePkwMakerMyProfile" parameterType="MyPageVO">
+	<update id="updatePkwMakerMyProfile" parameterType="Member">
 		UPDATE	 member
 		set		 sell_name   = #{sell_name}
 				,sell_tel    = #{sell_tel}

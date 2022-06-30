@@ -19,7 +19,7 @@
  
  	function approve(Vindex) {
  		var user_id = $("#user_id"+Vindex).val();
- 		alert(user_id);
+ 	//	alert(user_id);
         Swal.fire({
             title: user_id,
             text: "님 판매자 요청을 승인하시겠습니까?",

@@ -77,7 +77,7 @@
 	<form action="insertChkLevelMyPage" id="AdminConfirm" name="AdminConfirm">
 		<input type="hidden" id="user_id" name="user_id" value=""/>
 	</form>
-	<form action="makerMyProfileUpdate" method="post">
+	<form action="makerMyProfileUpdate" method="post" enctype="multipart/form-data">
 		<div class="container" align="center">
 		<div class="row">	
 			<div id="myPage">
@@ -92,15 +92,11 @@
 					<td><input type="text" name="sell_tel" required="required" value="${member.sell_tel }"/></td>
 				</tr>
 				<tr>
-					<th>판매자 상호사진</th>
-					<td><input type="text" name="sell_photo" required="required" value="${member.sell_photo }"/></td>
-				</tr>
-				<tr>
 					<th>판매상호이미지</th>
 					<td>
-						<img id="sell_photo"  name="sell_photo" alt="기본 프로필 사진" style="width: 10%;" src="${member.sell_photo}">
+						<img id="sell_photo"  name="sell_photo" style="width: 50px;" src="${member.sell_photo}">
 						<input type="hidden" id="photoChange" name="photoChange" value="">
-						<input id="photoFile" class="photoFile" type="file" name="multis" />
+						<input id="photoFile" class="photoFile" type="file" name="file" accept=".jpg,.jpeg,.gif,.png" />
 						
 							<script type="text/javascript">
 			                  function readImage(input) {
@@ -146,7 +142,7 @@
 					<th>신청상태</th>
 					<td>
 					<c:if test="${'9' eq member.chk or '2' eq member.chk}">
-						<button name="" onclick="adminConfirm('${member.user_id}'); return false;">관리자승인</button>
+						<button name="" onclick="adminConfirm('${member.user_id}'); return false;">관리자승인 요청하기</button>
 					</c:if>
 					${member.chk_nm}</td>
 					
@@ -162,36 +158,6 @@
 		</div>
 		</div>
 		</form>
-		<div class="container" align="center">
-		<div class="row">	
-			<div id="myPage">
-			<h3>메이커 판매상품리스트</h3>
-		 	<table class="table table-hover" id="myPageTbl">
-				<tr>
-					<th>상품번호</th>
-					<th>상품이미지</th>
-					<th>상품제목</th>
-				</tr>
-				<c:choose>
-					<c:when test="${listSize > 0}">
-					  <c:forEach var="item" items="${listMakerOrder}">
-						<tr>
-							<td>${item.pro_num}</td>
-							<td><img alt="" id="photoImg" src="${pageContext.request.contextPath}/upload/${item.pro_photo}"></td>
-							<td><a href="${path}/productDetails?pro_num=${item.pro_num}">${item.pro_title}</a></td>
-						</tr>
-					  </c:forEach>
-					</c:when>
-					<c:otherwise>
-						<tr>
-							<td colspan="2">판매중인 상품이 없습니다.</td>
-						</tr>
-					</c:otherwise>
-				</c:choose>
-			</table>
-		</div>
-	</div>
-	</div>
 
 	
 <jsp:include page="/WEB-INF/views/base/footer.jsp" flush="true">

@@ -34,7 +34,7 @@
 								</tr>
 								<tr>	
 									<th>상호이미지</th>
-									<td>${item.sell_photo}</td>
+									<td><img src="/upload/${item.sell_photo}" style="width:50px;"/></td>
 								</tr>
 								<tr>	
 									<th>사업자번호</th>

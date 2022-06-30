@@ -283,8 +283,10 @@
                <div class="chatList_wrap" id="chatList_wrap" onclick="chatListClick(${status.index})">
                   <input type="hidden" id="room_num${status.index}" name="room_num" value="${list.room_num }">
                   <input type="hidden" id="room_type${status.index}" name="room_type" value="${list.room_type }">
-                  <img class="listPic" alt="" src="${pageContext.request.contextPath}/upload/${list.pic_change }" id="listPic${status.index }"> 
-                  <span class="listRoomName" id="room_name${status.index }"> ${list.room_name}</span>
+                  <div class ="chatList_Line">
+	                  <img class="listPic" alt="" src="${pageContext.request.contextPath}/upload/${list.pic_change }" id="listPic${status.index }"> 
+	                  <span class="listRoomName" id="room_name${status.index }"> ${list.room_name}</span>
+                  </div>
                   <hr>
                </div>
             </c:forEach>
@@ -329,7 +331,7 @@
       
       <div id="chating" class="chating">
          <div id="OpenChatWindowBtn">
-            <button class="windowOpenBtn" onclick="windowopen()">오픈채팅만들기</button><!-- location.href='openChatList' -->
+            <button class="windowOpenBtn" onclick="windowopen()">오픈채팅목록</button><!-- location.href='openChatList' -->
          </div>
       <!-- 아작스에서 포이치로 돌려서 채팅대화내역리스트 뽑아서 여기에 어펜드 시키는것 -->
          <div class="chatting">
@@ -376,8 +378,7 @@
       }
       else if(room_type_this == 1 ){
          room_type_1(index);
-      }  
-      else if(room_type_this == 3){
+      }  else if(room_type_this == 3){
          room_type_3(index);
       }
       

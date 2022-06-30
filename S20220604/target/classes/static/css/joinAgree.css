@@ -38,7 +38,8 @@ label {
 	text-align: center;
 	box-shadow: 10px 10px 10px #d4ddcd6b;
 	width: 550px;
-	height: 630px;
+	height: 650px;
+	min-height: 650px;
 	margin-top: 70px;
 	margin-bottom:150px;
 	margin-left: auto;

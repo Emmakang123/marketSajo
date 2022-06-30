@@ -8,8 +8,9 @@
 	border-radius: 32px;
 	text-align: center;
 	box-shadow: 10px 10px 10px #d4ddcd6b;
-	width: 550px;
-    height: 850px;
+	width: 530px;
+    height: 920px;
+    min-height: 920px;
 }
 .infoTxt{
 	max-width: 570px;
@@ -298,4 +299,7 @@ button {
       }
 li {
 	text-align: left;
+}
+datalist {
+    display: block;
 }

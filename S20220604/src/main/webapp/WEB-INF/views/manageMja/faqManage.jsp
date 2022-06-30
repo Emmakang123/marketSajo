@@ -84,7 +84,7 @@
 								</select>
 							</td>
 							<td>
-								<input type="text" name="keyword" value="${keyword }"> 
+								<input type="text" name="keyword" value="${keyword }" placeholder="검색어를 입력하세요" id="searchinput"> 
 							</td>
 							<td>
 								<input type="submit" value="검색" id="btn">	

@@ -173,13 +173,22 @@ public class MyPageDaoImpl implements MyPageDao {
 		session.update("updatePkwShopperMyProfile",member);
 	}
 
-	@Override
-	public void updatePkwMakerMyProfile(Member member) {
-		System.out.println("MyPageDaoImpl updatePkwMakerMyProfile Start...");
-		
-		session.update("updatePkwMakerMyProfile",member);
-		
-	}
+	   @Override
+	   public void updatePkwMakerMyProfile(Member member) {
+	      System.out.println("MyPageDaoImpl updatePkwMakerMyProfile Start...");
+	      System.out.println("MyPageDaoImpl updatePkwMakerMyProfile getUser_id : "+ member.getUser_id());
+	      System.out.println("MyPageDaoImpl updatePkwMakerMyProfile member.getSellname() ->" + member.getSell_name());
+	      System.out.println("MyPageDaoImpl updatePkwMakerMyProfile Photo   : "+ member.getSell_photo());
+	      
+	      if (member.getSell_photo() == null) {
+	         member.setSell_photo("null");
+	         System.out.println("사진은 null로 셋팅해서 디비에 저장함");
+	         session.update("updatePkwMakerMyProfile",member);
+	      }
+	      else {
+	         session.update("updatePkwMakerMyProfile",member);
+	      }
+	   }
 
 	@Override
 	public void updatePkwShopperOrderList(MyPageVO mypagevo) {

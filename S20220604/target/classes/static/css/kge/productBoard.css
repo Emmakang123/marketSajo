@@ -1,7 +1,6 @@
-@charset "EUC-KR";
-
+@charset "UTF-8";
 .boardTable {
-	    text-align: center;
+       text-align: center;
     line-height: 1.5;
     width: 80%;
     border-collapse: collapse;
@@ -15,14 +14,14 @@
     max-width: 1920px;
 }
 #boardTitle {
-	text-align: center;
-	font-size: 42px;
-	font-family: 'Noto Sans KR';
-	color: #8c9789;
-	margin-left: auto;
-	margin-right: auto;
-	margin-top: 3%;
-	margin-bottom: 5%;
+   text-align: center;
+   font-size: 42px;
+   font-family: 'Noto Sans KR';
+   color: #8c9789;
+   margin-left: auto;
+   margin-right: auto;
+   margin-top: 3%;
+   margin-bottom: 5%;
 }
 .pro_type2_buttons {
     display: flex;
@@ -30,8 +29,8 @@
     margin-right: auto;
     text-align: center;
     font-size: 30px;
-    border: 1px solid #b0d282;
     width: 39%;
+    background-color: #b0d28221;
     border-radius: 15px;
     color: #b0d282;
     font-family: 'Noto Sans KR';
@@ -41,49 +40,50 @@
 
 }
 .pro_type2_buttons:link {
-	text-decoration: none;
+   text-decoration: none;
 }
 a:hover{
-	color: #b0d282;
+   color: #b0d282;
 }
 .pro_type2_buttons:hover {
-	/* color: #b0d282; */
-	text-decoration: none;
+   /* color: #b0d282; */
+   text-decoration: none;
 }
 
 .pageNum {
-	text-align: center;
-	padding: 0px;
-	margin-left: auto;
-	margin-right: auto;
+   text-align: center;
+   padding: 0px;
+   margin-left: auto;
+   margin-right: auto;
     flex-wrap: wrap;
     justify-content: space-around;
     font-family: 'Noto Sans KR';
 }
 
-ul li {
-	display: inline;
-	text-transform: capitalize;
-	padding: 0 10px; 
-	letter-spacing: 10px;
-	font-size: 15px;
-	font-family: 'Noto Sans KR';
-	
+.select_section > ul li {
+   display: inline;
+   text-transform: capitalize;
+   padding: 0 10px; 
+   letter-spacing: 10px;
+   font-size: 15px;
+   font-family: 'Noto Sans KR';
+ 
 }
 #board_array_select {
-	float: right;
-	margin-right: 15%;
-	font-family: 'Noto Sans KR';
-	
+   float: right;
+   margin-right: 15%;
+   font-family: 'Noto Sans KR';
+
+
+   
 }
 
 #select_section{
-	height: 50px;
-	margin-right: -12%;
+   margin-right: -12%;
 }
 
 .typ1_buttons  {
-	color: #61ae8a;
+   color: #6c757d;
     text-decoration: none;
     font-weight: 900;
     padding: 27px;
@@ -91,46 +91,42 @@ ul li {
 }
 
 #BoardNewest  {
-	color: #68655e;
+   color: #68655e;
     text-decoration: none;
     font-weight: 900;
-    padding: 27px;
     font-size: 20px;
-	font-family: 'Noto Sans KR';
-	font-weight: bolder;
+   font-family: 'Noto Sans KR';
+   font-weight: bolder;
 }
 
 #BoardLowest  {
-	color: #68655e;
+   color: #68655e;
     text-decoration: none;
     font-weight: 900;
-    padding: 27px;
     font-size: 20px;
-	font-family: 'Noto Sans KR';
+   font-family: 'Noto Sans KR';
 }
 
 #BoardHighest  {
-	color: #68655e;
+   color: #68655e;
     text-decoration: none;
     font-weight: 900;
-    padding: 27px;
     font-size: 20px;
-	font-family: 'Noto Sans KR';
-	font-weight: bolder;
+   font-family: 'Noto Sans KR';
+   font-weight: bolder;
 }
 
 
 #BoardNewest a {
-	color: black;
+   color: black;
     text-decoration: none;
 }
 
 .typ1_buttons:link {
-	color: black;
-	font-family: 'Noto Sans KR';
+   font-family: 'Noto Sans KR';
 }
 .row{
-	min-width:1200px; 
+   min-width:1200px; 
 }
 #btn-primary {
     color: #fff;
@@ -140,12 +136,12 @@ ul li {
     border-radius: 1px;
 }
 #card{
-	border: 7px solid #dae5ce;
-	margin-bottom: 5%;
-	margin-top: 5%;
-	margin-left: 20%;
-	margin-right: 20%;
-	font-family: 'Noto Sans KR';
+   border: 7px solid #dae5ce;
+   margin-bottom: 5%;
+   margin-top: 5%;
+   margin-left: 20%;
+   margin-right: 20%;
+   font-family: 'Noto Sans KR';
     display: flex;
     flex-direction: column;
     min-width: 0;
@@ -157,13 +153,31 @@ ul li {
     width: 18rem;
 }
 .pageNumi:hover {
-	color: black;
-	text-decoration: none;
+   color: black;
+   text-decoration: none;
 }
 
 .pageNumi {
-	color: black;
-	font-size: 30px;
-	text-decoration: none;
+   color: black;
+   font-size: 30px;
+   text-decoration: none;
 }
-
+#item_a{
+   font-size:20px;
+   text-decoration: none;
+   font-weight: 1px;
+   font-family: 'Noto Sans KR';
+}
+#item_context{
+   font-size:15px;
+    white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   color: gray;
+   opacity: 0.7;
+   font-family: 'Noto Sans KR';
+   
+}
+.featured_spad{
+   margin-top: 20px;
+}

@@ -74,7 +74,7 @@ $(function() {
 
   </head>
 
-<body class="text-center">
+<body>
 <jsp:include page="/WEB-INF/views/base/header.jsp" flush="true">
 		<jsp:param value="" name=""/>
 </jsp:include>
@@ -136,14 +136,14 @@ $(function() {
 		var user_name = $('#inputName').val();
 		var user_id = $('#floatingInput').val();
 		var email = $('#inputEmail').val();
-		alert("user_name: " + user_name +"user_id: " + user_id + "email: " + email);
+	//	alert("user_name: " + user_name +"user_id: " + user_id + "email: " + email);
 			$.ajax({
 				type:"POST",
 				url:"<%=context%>/findPwBtn",
 				data: {user_name: user_name, user_id:user_id, email: email},
 				dataType:'json',
 				success : function(member5){
-					alert("member5.user_id->"+member5.user_id);
+				//	alert("member5.user_id->"+member5.user_id);
 				
 					  if(member5.user_id == 'failUser')  {
 						  $('#id_value').text("회원 정보를 확인해주세요");
@@ -151,7 +151,7 @@ $(function() {
 							
 					 } else {
 						 ajaxSuccess();
-					     alert("유저의 임시비밀번호->"+member5.user_pw);/*유저아이디를 갖고있는데 멤버로 담아와서 어떻게 유저아이디만 보여주는지 모르겠다*/
+					 //    alert("유저의 임시비밀번호->"+member5.user_pw);/*유저아이디를 갖고있는데 멤버로 담아와서 어떻게 유저아이디만 보여주는지 모르겠다*/
 		
 					}
 					

@@ -74,7 +74,7 @@ $(function() {
 
   </head>
 
-<body class="text-center">
+<body>
 <jsp:include page="/WEB-INF/views/base/header.jsp" flush="true">
 		<jsp:param value="" name=""/>
 </jsp:include>
@@ -143,7 +143,7 @@ $(function() {
 		var idV ="";
 		var user_name = $('#floatingInput').val();/*inputname*/
 		var email = $('#floatingPassword').val();/*inputemail 부트스트랩때문에 아이디 설정이 저럴뿐인것.*/
-		alert("user_name: " + user_name + "email: " + email);
+	//	alert("user_name: " + user_name + "email: " + email);
 		
 		
 			$.ajax({
@@ -171,7 +171,7 @@ $(function() {
 		  title:'확인',
 		  text: "회원 정보를 확인해주세요",
 		  icon: 'warning',
-		  showCancelButton: true,
+		  showCancelButton: false,
 		  confirmButtonColor: '#6B9900',
 		  cancelButtonColor: '#dedab8',
 		  confirmButtonText: '확인',

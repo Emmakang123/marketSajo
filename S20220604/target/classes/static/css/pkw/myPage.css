@@ -40,10 +40,9 @@
 }
 
 .row .col-lg-10 p {
-    margin-left: 40px;
+    margin-left: 10px;
     margin-top: 40px !important;
 }
-
 
 #photoImg {
 	max-width: 75px;
@@ -102,6 +101,7 @@
 	border:none;
 	color: white;
 }
+
 .btn {
 	color: #fff !important;
     background-color: #a6d377 !important;

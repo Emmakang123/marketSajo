@@ -1,4 +1,4 @@
-@charset "EUC-KR";
+@charset "UTF-8";
 
 #css_tabs {
     font-family: 'Noto Sans KR';
@@ -7,10 +7,10 @@
 }
 
 #tab1,#tab2,#tab3{
-	display: none;
-	font-family: 'Noto Sans KR';
+   display: none;
+   font-family: 'Noto Sans KR';
 }
-/* ¶óº§ ±âº» ½ºÅ¸ÀÏ ÁöÁ¤ */
+/* ë¼ë²¨ ê¸°ë³¸ ìŠ¤íƒ€ì¼ ì§€ì • */
 #css_tabs > label {
     display:inline-block;
     font-variant:small-caps;
@@ -33,7 +33,7 @@
 #css_tabs label[for=tab1] {
     margin-left:1.5em
 }
-/* ¼±ÅÃµÈ ¶óº§, Ä¿¼­¸¦ ¿Ã¸° ¶óº§ ½ºÅ¸ÀÏ ÁöÁ¤ */
+/* ì„ íƒëœ ë¼ë²¨, ì»¤ì„œë¥¼ ì˜¬ë¦° ë¼ë²¨ ìŠ¤íƒ€ì¼ ì§€ì • */
 #css_tabs input:nth-of-type(1):checked ~ label:nth-of-type(1), #css_tabs > label[for=tab1]:hover {
     background:#1c3316;
     color:#fff
@@ -46,70 +46,77 @@
     background:#1c3316;
     color:#fff
 }
-/* ½ÇÁ¦ ³»¿ëÀÌ ´ã±ä div ¿ä¼Ò ½ºÅ¸ÀÏ ÁöÁ¤ */
+/* ì‹¤ì œ ë‚´ìš©ì´ ë‹´ê¸´ div ìš”ì†Œ ìŠ¤íƒ€ì¼ ì§€ì • */
 #tab1_content{
-	padding:2em;
-    border: 5px ridge #dadee3;
+   padding:2em;
+    border: 2px solid  #dadee3; 
+    border-radius: 3px;
     width:1100px;
     height:100%;
     margin: auto;
+    margin-top: 30px;
     overflow: auto;
     object-fit: contain;
 } 
-
+.table {
+   margin-bottom: 4px;
+}
 #tab2_content{
-	padding:2em;
-    border: 5px ridge #dadee3;
     width: 1100px;
     height:100%;
     margin: auto;
     overflow: auto;
     object-fit: contain;
+    border: 2px solid  #dadee3; 
+    border-radius: 3px;
+    margin-top: 30px;
 }
 
 #tab3_content {
     padding:2em;
-    border: 5px ridge #dadee3;
     width:1100px;
     height:100%;
     margin: auto;
     overflow: auto;
     object-fit: contain;
+    border: 2px solid  #dadee3; 
+    border-radius: 3px;
+    margin-top: 30px;
 }
 
 
 #out {
-	width: 80%;
-	text-align: center;
-	margin: auto;
-	margin-bottom: 100px;
+   width: 80%;
+   text-align: center;
+   margin: auto;
+   margin-bottom: 100px;
 }
 
 .wrapper {
-	margin: 60px auto;
-	display: inline-flex;
+   margin: 60px auto;
+   display: inline-flex;
 }
 
 .wrapper > * {
-	display: inline-block; 
-	vertical-align: middle;
+   display: inline-block; 
+   vertical-align: middle;
 }
 #detailPhoto {
-	display: inline-block; 
+   display: inline-block; 
 }
 #detailText {
-	display: inline-block; 
-	width: 584px;
-	line-height:2.2;
-	font-size: 18px; 
-	margin-left: 20px;
+   display: inline-block; 
+   width: 584px;
+   line-height:2.2;
+   font-size: 18px; 
+   margin-left: 20px;
 }
 .bb_buttons{
-	display: flex;
-	justify-content: center;
+   display: flex;
+   justify-content: center;
 }
 .in_bb_buttons{
-	display: flex;
+   display: flex;
 }
 
 #productimg{
@@ -117,64 +124,66 @@
    width: 500px;
 }
 #detail_basket_buttons{
-	width: 285px;
-	height: 53px;
-	margin-right: 5px;
-	margin-left: 0;
-	text-decoration: none;
-	background-color: #b4cb9c;
+   width: 285px;
+   height: 53px;
+   margin-right: 5px;
+   margin-left: 0;
+    border: 3px solid #a8d17d;
+    color: #a8d17d;
+    font-weight: bold;
 }
 #wish_button{
-	width: 285px;
-	height: 53px;
-	text-decoration: none;
-	font-family: 'Noto Sans KR';
-	background-color: #b4cb9c;
+   width: 285px;
+   height: 53px;
+   text-decoration: none;
+   border: 3px solid #a8d17d;
+    color: #a8d17d;
+    font-weight: bold;
 }
 #detail_purchase_buttons{
-	width: 573px;
-	height: 55px;
-	margin-left: -2px;
+   width: 573px;
+   height: 55px;
+   margin-left: -2px;
     margin-top: 5px;
-	text-decoration: none;
-	font-family: 'Noto Sans KR';
-	background-color: #b4cb9c;
+   text-decoration: none;
+   font-family: 'Noto Sans KR';
+   background-color: #a8d17d;
 }
 #detailimg{
-	width: 930px;
+   width: 930px;
 }
 
 #a {
-	text-align: left;
-	font-family: 'Noto Sans KR';
+   text-align: left;
+   font-family: 'Noto Sans KR';
 }
 #a_1 {
-	text-align: left;
-	font-family: 'Noto Sans KR';
+   text-align: left;
+   font-family: 'Noto Sans KR';
 }
 
 .b {
-	text-align: left;
-	font-family: 'Noto Sans KR';
+   text-align: left;
+   font-family: 'Noto Sans KR';
 }
 #sell_photoImg {
-	width: 30px;
-	height: 25px;
-	border: 1px white;
-	margin-left: auto;
-	margin-right: auto;
+   width: 30px;
+   height: 25px;
+   border: 1px white;
+   margin-left: auto;
+   margin-right: auto;
 }
 #sell_photoImg {
-	margin: 0;
-	float: right;
+   margin: 0;
+   float: right;
 }
 
 .modal {
-	position: fixed;
+   position: fixed;
     top: 0;
     left: 0;
     z-index: 1055;
-    display: block;
+    display: none;
     width: 100%;
     height: 100%;
     overflow-x: hidden;
@@ -183,39 +192,41 @@
     background-color: #6c757dc2;
 }
 #modal_p{
-	height: 20%;
-	margin: 0;
-	text-align: center;
+   height: 20%;
+   margin: 0;
+   text-align: center;
 }
 .modal_content{
-	  width:400px; 
-	  height:fit-content;
-	  background:#fff; 
-	  border-radius:10px;
-	  position:relative; 
-	  top:50%; 
-	  left:50%;
-	  margin-top:-100px; 
-	  margin-left:-200px;
-	  box-sizing:border-box; 
-	  line-height:23px; 
-	  cursor:pointer;
-	  font-family: 'Noto Sans KR';
+     width:400px; 
+     height:233px;
+     background:#fff; 
+     border-radius:10px;
+     position:relative; 
+     top:50%; 
+     left:50%;
+     margin-top:-100px; 
+     margin-left:-200px;
+     box-sizing:border-box; 
+     line-height:23px; 
+     cursor:pointer;
+     font-family: 'Noto Sans KR';
 }
 #modal_img{
-	margin-bottom: 10px;
-	padding-top: 10px;	
+   margin-bottom: 10px;
+   padding-top: 10px;   
+   height: 35%;
 }
 #modal_sell_photoImg{
-	height: 42px;
-	width: 40px;
+   height: 42px;
+   width: 40px;
+   margin-top: 5%;
 }
 #modal-alert{
-	font-family: 'Noto Sans KR';
-	color: #898383;
-	font-size: 20px;
-	border: none;
-	margin: 0;
+   font-family: 'Noto Sans KR';
+   color: #898383;
+   font-size: 20px;
+   border: none;
+   margin: 0;
 }
 .modal_buttons {
     display: inline-flex;
@@ -225,16 +236,16 @@
     justify-content: space-around;
 }
 .modal_buttons > *{
-	display: flex; 
-	vertical-align: middle;
-	font-family: 'Noto Sans KR';
+   display: flex; 
+   vertical-align: middle;
+   font-family: 'Noto Sans KR';
 }
  #chat_connect_btn {
   margin-right: 2%;
   height: 47px;
   font-weight: bold;
 } 
-/*  ¹öÆ° css  */
+/*  ë²„íŠ¼ css  */
 .custom-btn {
   color: #fff;
   border-radius: 5px;
@@ -304,7 +315,7 @@
 /*  css end*/
 
 
-/*  ¹öÆ°2 css  */
+/*  ë²„íŠ¼2 css  */
 .basketWish-btn {
   color: #fff;
   border-radius: 5px;
@@ -323,20 +334,20 @@
 }
 .bwBtn-2 {
 
-  background: linear-gradient(0deg, rgb(133 167 71) 0%, rgb(143 167 73) 100%);
-  border: none;
+/*   background: linear-gradient(0deg, rgb(133 167 71) 0%, rgb(143 167 73) 100%);
+  border: none; */
   
 }
 .bwBtn-2:before {
   height: 0%;
   width: 2px;
 }
-.bwBtn-2:hover {
+ .bwBtn-2:hover {
   box-shadow:  4px 4px 6px 0 rgba(255,255,255,.5),
               -4px -4px 6px 0 rgba(116, 125, 136, .5), 
     inset -4px -4px 6px 0 rgba(255,255,255,.2),
     inset 4px 4px 6px 0 rgba(0, 0, 0, .4);
-}
+} 
 
 /*----------------*/
 .basketWish-btn2 {
@@ -355,11 +366,11 @@
    4px 4px 5px 0px rgba(0,0,0,.1);
   outline: none;
 }
-.bwBtn-22 {
+/* .bwBtn-22 {
   background: linear-gradient(0deg, #424e38 0%, rgb(104 114 89) 100%);
   border: none;
   
-}
+} */
 .bwBtn-22:before {
   height: 0%;
   width: 2px;
@@ -384,27 +395,27 @@
 
 
 .tab_type1 ul{
-	display: flex;
-	font-family: 'Noto Sans KR';
+   display: flex;
+   font-family: 'Noto Sans KR';
 }
 
 .tab_type1 ul li{
-	flex: 1;
-	border: 1px solid #ddd;
-	border-left: none;
+   flex: 1;
+   border: 1px solid #ddd;
+   border-left: none;
 }
 .tab_type1 ul li : first-ch:first-child {
-	border-left: 1px solid #ddd;
+   border-left: 1px solid #ddd;
 }
 .tab_type1 ul li a {
-	display: block;
-	height: 59px;
-	font-size: 14px;
-	color: #505050;
-	text-align: center;
-	line-height: 59px;
-	text-align: none;
-	font-family: 'Noto Sans KR';
+   display: block;
+   height: 59px;
+   font-size: 14px;
+   color: #505050;
+   text-align: center;
+   line-height: 59px;
+   text-align: none;
+   font-family: 'Noto Sans KR';
 }
 
    
@@ -417,10 +428,10 @@
    .pop_wrap .pop_inner{display:inline-block; padding:20px 30px; background:#fff; width:1000px; vertical-align:middle; font-size:15px;}
 
 .review_table {
-	width: 2000px;
-	height: 500px;
-	border-collapse: separate;
- 	border-spacing: 0 10px; 
+   width: 2000px;
+   height: 500px;
+   border-collapse: separate;
+    border-spacing: 0 10px; 
 }
 .product_img_size {
    height: 100px;
@@ -576,7 +587,7 @@
    width: 50px;
    position: relative;
    left: 50px;
-   top: 22px;
+   top: 8px;
 }
 
 #insertBtn {
@@ -588,7 +599,7 @@
    font-weight: bold;
    width: 3em;
    position: relative;
-   left: 1130px;
+   left: 1030px;
    bottom: 10px;
    text-decoration: none;
 }
@@ -649,7 +660,7 @@
    width: 50px;
    position: relative;
    left: 50px;
-   top: 22px;
+   top: 8px;
 }
 
 .noReview {

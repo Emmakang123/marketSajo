@@ -99,7 +99,7 @@
 			        <font style="vertical-align: inherit;">
 				        <font style="vertical-align: inherit;">
 					        <font style="vertical-align: inherit;">
-					        	<font style="vertical-align: inherit;">My상품 리스트</font>
+					        	<font style="vertical-align: inherit;">등록된 상품리스트</font>
 					        </font>
 				        </font>
 			        </font>

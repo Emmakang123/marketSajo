@@ -24,7 +24,7 @@
 	}
 	function testclick() {
 		var imgsrc = document.getElementById('chatImg').src;
-		alert(imgsrc);
+	//	alert(imgsrc);
 	}
 </script>
 </head>
@@ -34,10 +34,10 @@
 		<h1>오픈 채팅방 만들기</h1>
 		<img alt="채팅방 이미지" src="${defaultChatImg }" class="chatImg" id="chatImg" name=""><p>
 		<label class="picChange2" for="picChange">사진변경</label>
-		<input id="picChange" class="picChange" type="file" name="file" accept=".jpg,.jpeg,.gif,.png"/>
-		<input type="text" class="createChatRoomName" name="room_name" placeholder="오픈채팅방 이름을 입력하세요." onfocus="this.placeholder=''" onblur="this.placeholder='오픈채팅방 이름을 입력하세요.'"><p>
+		<input id="picChange" class="picChange" type="file" name="file" accept=".jpg,.jpeg,.gif,.png"/><p>
+		<input type="text" class="createChatRoomName" name="room_name" placeholder="오픈채팅방 이름을 입력하세요.(9자리)" onfocus="this.placeholder=''" onblur="this.placeholder='오픈채팅방 이름을 입력하세요.(9자리)'" maxlength="9"><p>
 		비밀번호 <input type="checkbox" id="pwdCheckbox" name="" onclick="toggleTextbox(this)">
-		<input type="password" class="chatRoomPwd" id="chatRoomPwd" name="room_pawd" placeholder="비밀번호를 입력하세요." onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호를 입력하세요.'"><p>
+		<input type="password" class="chatRoomPwd" id="chatRoomPwd" name="room_pawd" placeholder="비밀번호를 입력하세요." onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호를 입력하세요.'" disabled><p>
 		<button class="createNicknameBtn" name="" type="submit" >생성하기</button>
 	
 		<input type="hidden" name="room_type" value="2">

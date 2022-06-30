@@ -41,6 +41,12 @@
 	color: grey;
 }
 
+
+#searchinput{
+	border: none;
+	border-bottom: 1px solid black;
+	width: 550px;
+}
 #btn {
 	text-align: center;
 	border: 1px solid #b0d282;
@@ -48,4 +54,5 @@
 	background-color: white;
 	border-radius: 10px;
 	margin: 0 auto;
+	width: 150px;
 }

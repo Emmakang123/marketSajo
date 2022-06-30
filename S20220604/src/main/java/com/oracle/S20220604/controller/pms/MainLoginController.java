@@ -388,7 +388,7 @@ public class MainLoginController {
 			  } 
 			
 			
-				  
+			  model.addAttribute("titless",1);  
 		      model.addAttribute("product", product);
 		      model.addAttribute("listProduct", BestProductlist); //여기서 모델에 전체 리스트를 담아주는것-> 민서는 베스트, 뉴 따로 리스트 만들어야함
 		      model.addAttribute("pg", pg);
@@ -401,15 +401,16 @@ public class MainLoginController {
 			public String productBoardNew(Product product, String curreuntPage, Model model) {
 			      System.out.println("MainLoginController productBoardNew Start...");
 			      
+			      
+			      // 베스트 상품 목록 리스트 - 상품 목록
+			      
+			      List<Product> NewProductlist = ms.NewProductlist(product);
+			      
 			      // 상품 목록 리스트 - 상품 갯수
 			      int total2 = ms.total2(product);
 			      Paging pg = new Paging(total2, curreuntPage);
 			      product.setStart(pg.getStart());
 			      product.setEnd(pg.getEnd());
-			      
-			      // 베스트 상품 목록 리스트 - 상품 목록
-			      
-			      List<Product> NewProductlist = ms.NewProductlist(product);
 			  
 			      System.out.println("MainLoginController productBoardBest listBest4Product.size()->"+NewProductlist.size());
 					
@@ -419,7 +420,7 @@ public class MainLoginController {
 				  } 
 				
 				
-					  
+				  model.addAttribute("titless",2);
 			      model.addAttribute("product", product);
 			      model.addAttribute("listProduct", NewProductlist); //여기서 모델에 전체 리스트를 담아주는것-> 민서는 베스트, 뉴 따로 리스트 만들어야함
 			      model.addAttribute("pg", pg);

@@ -39,7 +39,7 @@
 					success:function(proType2List){
 						$('#pt2').empty();
 						var proType2ListStr = JSON.stringify(proType2List);
-						alert("proType2ListStr->"+proType2ListStr);
+				//		alert("proType2ListStr->"+proType2ListStr);
 						// $('#pt2').append(proInfoTy2List);
 						str += "<select name='pro_type2' id='pt2_foreach'>";
 						$(proType2List).each(            /* foreach문 같음 */

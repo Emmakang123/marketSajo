@@ -61,7 +61,7 @@
     <link href="css/bootstrap.css" rel="stylesheet">
   </head>
 
-<body class="text-center">
+<body>
 <jsp:include page="/WEB-INF/views/base/header.jsp" flush="true">
 		<jsp:param value="" name=""/>
 </jsp:include>

@@ -495,14 +495,16 @@ public class MyPageController {
 	
 	// 판매자모드_마이프로필_저장
 	@PostMapping(value="makerMyProfileUpdate")
-	public String makerMyProfileUpdate(Member member, HttpServletRequest request, Model model) throws Exception{
+	public String makerMyProfileUpdate(Member member, HttpServletRequest request, Model model
+								,MultipartFile file) throws Exception{
 		// 수정로직 - 개인정보 저장.
+		String uploadPath = request.getSession().getServletContext().getRealPath("/upload/");
 		System.out.println("member.getSellname ->" + member.getSell_name());
 		System.out.println("START makerMyProfileUpdate Controller");
 		String id = (String) request.getSession().getAttribute("sessionId");
-
+		String savedName = uploadFile(file.getOriginalFilename(), file.getBytes(), uploadPath);
 		if (null != id && !"".equals(id)) {
-			
+			member.setSell_photo(savedName);
 			member.setUser_id(id);
 			mp.updatePkwMakerMyProfile(member);
 			return "redirect:makerMyProfile";

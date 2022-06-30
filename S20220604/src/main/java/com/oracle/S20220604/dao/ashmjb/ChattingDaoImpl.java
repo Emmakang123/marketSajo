@@ -12,6 +12,8 @@ import com.oracle.S20220604.domain.Chatting;
 import com.oracle.S20220604.model.Message;
 import com.oracle.S20220604.model.Participant;
 import com.oracle.S20220604.model.Product;
+
+import ch.qos.logback.classic.Logger;
 @Repository
 public class ChattingDaoImpl implements ChattingDao {
    @Autowired
@@ -25,14 +27,18 @@ public class ChattingDaoImpl implements ChattingDao {
 
    @Override
    public Chatting save(Chatting chatting) {
+	   System.out.println("chatting save start");
+	   System.out.println(chatting.getRoom_pawd());
+	   
 	   try {
-		   em.persist(chatting);
+//		   em.persist(chatting);
+		   session.insert("akChattingInsert", chatting);
 		   System.out.println("chatting save 성공");
 	   }
 	   catch (Exception e) {
 		   System.out.println(e.getMessage());
 	   }
-	   System.out.println("Chatting save->");
+	   System.out.println("Chatting save fail->");
 	   
 	   return chatting;
    }

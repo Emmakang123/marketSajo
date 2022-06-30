@@ -371,7 +371,7 @@ public class ManagerController {
          throws Exception {
       System.out.println("createBanner Post Start");
       System.out.println("createBanner 컨트롤러");
-      String uploadPath = request.getSession().getServletContext().getRealPath("/img/");
+      String uploadPath = request.getSession().getServletContext().getRealPath("/upload/");
       logger.info("originalName : " + file.getOriginalFilename());
       logger.info("size : " + file.getSize());
       logger.info("contentType : " + file.getContentType());

@@ -41,7 +41,7 @@
 				}
 			},
 			error : function(){
-				alert("아이디 중복 확인 ajax 실행 실패");
+			//	alert("아이디 중복 확인 ajax 실행 실패");
 				}
 			});
 		}
@@ -220,7 +220,7 @@
 					
 					<hr>
 						<div class="infoAlignf" id="info_align" >
-							<div class="infogul">● 아이디</div>  
+							<div class="infogul">＊ 아이디</div>  
 								<input type="text" class="user_id_confirm"  id="user_id" name="user_id" required="required" placeholder="영문 소문자, 숫자를 이용해 8~20자 입력"
 								onfocus="this.placeholder=''" onblur="this.placeholder='영문 소문자, 숫자를 이용해 8~20자 입력'" 
 								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,20}$">
@@ -229,7 +229,7 @@
 								<input type="hidden" id="id_check_hidden" value="N"> <!--중복확인해서 알러트로 띄워줄것-> 없으면  그대로, 있으면 reset-->
 						</div>
 						<div class="infoAlignf">
-							● 비밀번호
+							＊ 비밀번호
 							<div class="PswdBig">
 								<!--암호화하는 코드는 나중에 추가할지 정할것.-->
 								<div >	
@@ -242,7 +242,7 @@
 							</div>
 						</div>
 						<div class="infoAlignf">
-							● 비밀번호 확인 <!--키보드로 입력하는 순간 첫번째 비밀번호와 같은지 확인-->
+							＊ 비밀번호 확인 <!--키보드로 입력하는 순간 첫번째 비밀번호와 같은지 확인-->
 							<div >
 								<span><input type="password" class="pw_confirm"  id="user_pwchk" placeholder="비밀번호확인"
 								onfocus="this.placeholder=''" onblur="this.placeholder='비밀번호를 다시 입력해주세요'"> 
@@ -251,14 +251,14 @@
 							</div>	
 						</div>
 						<div class="infoAlignb">
-							● 이름
+							＊ 이름
 							<div class="nameInput">
 								<input type="text" class="userNameIn" id="user_name" name="user_name" required="required">
 							</div>
 						</div>
 						<div class="infoAlignb">
 						
-							● 이메일<!--메일 인증을 하고싶으면 테이블에 컬럼필요, 아작스 이용.-->
+							＊ 이메일<!--메일 인증을 하고싶으면 테이블에 컬럼필요, 아작스 이용.-->
 							<div class="userEmail">	
 									<input type="text" class="userEmailHead" id="user_email" required>
 									<span id="middle">@</span><input type="text" class="userEmailTail" id="email_address" list="user_email_address">
@@ -293,14 +293,14 @@
 			
 						</div>
 						<div class="infoAlignb">
-							● 전화번호
+							＊ 전화번호
 							<div >
 								<input type="text"  id="con_tel" name="con_tel" class="phone" required="required" maxlength="13" placeholder="000-0000-0000"
 								onfocus="this.placeholder=''" onblur="this.placeholder='000-0000-0000'" pattern="\d{2,3}-\d{3,4}-\d{4}">
 							</div>
 						</div>
 						<div class="infoAlignc">
-							● 주소 
+							＊ 주소 
 							<div class="PostTot">
 								<div class="postCode">
 									<input type="text"  id="postcode" placeholder="우편번호"><br>	
@@ -315,7 +315,7 @@
 							</div>
 						</div>
 						<div class="infoAlignb">	
-							<div class="photoTxt">	● 프로필 사진등록</div>
+							<div class="photoTxt">	＊ 프로필<p>&nbsp&nbsp&nbsp사진등록</div>
 							<div class="userPotoWrap">
 								<!--null인경우 랜덤값으로 넣어야 할텐디(1~7) how 아작스 구현할것 고니언니한티물어보자-->
 								<div class="userPhotoo">
@@ -333,7 +333,7 @@
 										const chosenImage = images[Math.floor(Math.random() * 6 + 1)];/*1~7의 랜덤숫자 */
 										const user_image = document.getElementById("user_photo");
 										user_image.src = 'img/'+chosenImage;
-										alert("user_image.src "+ user_image.src);
+									//	alert("user_image.src "+ user_image.src);
 										$("#photoChange").val(chosenImage);
 										/* bgImage.src = "img/"+chosenImage; //img 태그속성을 넣어줌
 										document.body.appendChild(bgImage); // */

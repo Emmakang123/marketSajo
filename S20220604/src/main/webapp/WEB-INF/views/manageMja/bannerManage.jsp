@@ -122,7 +122,7 @@
 	
 	function coupon() {
 		$('#boardSelect').remove();
-		alert("coupon");
+	//	alert("coupon");
 		$('#bn_category').val('2');
 		$('#board_num').val('1');
 	}
@@ -157,7 +157,7 @@
 			url:"<%=context%>/bannerChk",
 			dataType:'text',
 			success: function(data) {
-				alert(data);
+			//	alert(data);
 				if(data == '1'){
 					var createBn = document.createBn;
 					alert("배너가 등록되었습니다.");

@@ -20,6 +20,7 @@ a:after{
 	text-align: center;
 	width: 100%;
 	height: 100%;
+	font-family: 'Noto Sans KR';
 }
 
 .newOpenChat .chatImg{	/* 프로필 이미지 출력 */
@@ -109,6 +110,7 @@ a:after{
   border: none;
   background: rgb(255,27,0);
 background: linear-gradient(0deg, rgb(153 189 86) 0%, rgb(154 191 85) 100%);
+font-family: 'Noto Sans KR';
 }
 .openChatBtn:hover {
   color: #a6d377;
@@ -152,4 +154,5 @@ background: linear-gradient(0deg, rgb(153 189 86) 0%, rgb(154 191 85) 100%);
 .ListAtag{
 	margin-top: 15px;
     margin-left: 10px;
+    font-family: 'Noto Sans KR';
 }
