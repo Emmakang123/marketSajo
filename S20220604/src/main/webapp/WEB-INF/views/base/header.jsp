@@ -41,7 +41,7 @@
          <form action="searchKeyword">
             <div class="header_middle_searchbar">
                <div class="header_middle_searchbar_underline">
-                  <input type="text" name="keyword" id="searchbar" value="${keyword }" placeholder="검색어를 입력해주세요" onfocus="this.placeholder=''" onblur="this.placeholder='검색어를 입력해주세요'" >
+                  <input type="text" name="keyword" id="searchbar" value="${keyword }" placeholder="상품명 혹은 상호명을 검색해주세요" onfocus="this.placeholder=''" onblur="this.placeholder='상품명 혹은 상호명을 검색해주세요'" >
                   <!-- <button type="submit">keyword검색</button>버튼이 필요한지 확인중 -->
                </div>
                

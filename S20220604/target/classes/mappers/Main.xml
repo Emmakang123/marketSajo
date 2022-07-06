@@ -116,8 +116,14 @@
        FROM (
            SELECT rownum rn , a.*
            FROM (
-          		 SELECT * from product where pro_status = 1 and pro_title like '%' || #{keyword} || '%' ) a
-		       	 )
+          		 SELECT p.*,m.sell_name 
+          		 from product p, member m 
+          		 where pro_status = 1 
+          		 and (p.pro_title like '%' || #{keyword} || '%' or m.sell_name like '%' || #{keyword} || '%')
+                 and p.user_id=m.user_id
+				
+				) a
+		    )
 	   WHERE rn BETWEEN #{start} and #{end}
 		<!--검색된 모든 로직을 적용시킨후에 페이징을 해줌  -->
 	</select>

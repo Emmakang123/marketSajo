@@ -86,12 +86,10 @@
    // 장바구니 추가 아작스
       function putBaskect() {
      //    alert("putBaskect start...");
-         var user_id = $("#detialsUser_id").val();
-         if (user_id =="") {
+         
          // 로그인 체크 function 타기
          loginCheck();
-         }
-         else {
+         
          var user_id = $("#detialsUser_id").val();
          var pro_num = $("#detailsPro_num").val();
      //    alert("pro_num->"+pro_num);
@@ -112,7 +110,6 @@
                }
             });
          }
-   }
    
 </script>
 

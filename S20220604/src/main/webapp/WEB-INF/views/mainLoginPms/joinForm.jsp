@@ -103,10 +103,13 @@
 		});
 	});
 	
-	
-	
-
-
+	/* -------------------------------전화번호 '-' 자동입력하기 -------------------------------- */
+    const autoHyphen2 = (target) => {
+      target.value = target.value
+      .replace(/[^0-9]/g, '')
+      .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, "$1-$2-$3").replace(/(\-{1,2})$/g, "");
+  }
+ 
 	/*-------------우편주소 가져오기--------------*/
 	
     function postcodeBtn() {
@@ -295,8 +298,8 @@
 						<div class="infoAlignb">
 							＊ 전화번호
 							<div >
-								<input type="text"  id="con_tel" name="con_tel" class="phone" required="required" maxlength="13" placeholder="000-0000-0000"
-								onfocus="this.placeholder=''" onblur="this.placeholder='000-0000-0000'" pattern="\d{2,3}-\d{3,4}-\d{4}">
+								<input type="text"  id="con_tel" name="con_tel" class="phone" required="required" maxlength="13" placeholder="'-'없이 입력해주세요"
+								onfocus="this.placeholder=''" onblur="this.placeholder='-'없이 입력해주세요'" oninput="autoHyphen2(this)">
 							</div>
 						</div>
 						<div class="infoAlignc">

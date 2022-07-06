@@ -79,36 +79,33 @@
          }
       }
       
-   // 장바구니 추가 아작스
-      function putBaskect(index) {
-     //    alert("putBaskect start...");
-         var user_id = $("#detialsUser_id"+index).val();
-         if (user_id =="") {
-         // 로그인 체크 function 타기
-        	 loginCheck(index);
-         }
-         else {
-         var user_id = $("#detialsUser_id"+index).val();
-         var pro_num = $("#detailsPro_num"+index).val();
-     //    alert("pro_num->"+pro_num);
-         
-         var quantity = $("#quantity"+index).val();
-      //   alert("quantity->"+quantity);
-         
-         $.ajax(
-            {
-               url:"<%=context%>/inputBasket",
-               data:{user_id : user_id, pro_num : pro_num, quantity : quantity},
-               dataType : 'text',
-               success:function(data){
-            //      alert("data;" + data)
-                  if (data == 1) {
-                     alert("장바구니에 추가 되었습니다.");
-                  } else alert("이미 추가 되었습니다.");
-               }
-            });
-         }
-   }
+      // 장바구니 추가 아작스
+         function putBaskect(index) {
+        //    alert("putBaskect start...");
+            
+            // 로그인 체크 function 타기
+            loginCheck(index);
+            
+            var user_id = $("#detialsUser_id"+index).val();
+            var pro_num = $("#detailsPro_num"+index).val();
+        //    alert("pro_num->"+pro_num);
+            
+            var quantity = 1;
+         //   alert("quantity->"+quantity);
+            
+            $.ajax(
+               {
+                  url:"<%=context%>/inputBasket",
+                  data:{user_id : user_id, pro_num : pro_num, quantity : quantity},
+                  dataType : 'text',
+                  success:function(data){
+               //      alert("data;" + data)
+                     if (data == 1) {
+                        alert("장바구니에 추가 되었습니다.");
+                     } else alert("이미 추가 되었습니다.");
+                  }
+               });
+            }
       
       //채팅 연결
       function putChatting(index) {

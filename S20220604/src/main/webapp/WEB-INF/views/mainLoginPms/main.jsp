@@ -34,130 +34,120 @@
 	<jsp:param value="" name=""/>
 </jsp:include>
 <script type="text/javascript">
+// 위시 리스트 추가 아작스  베스트 
+function putCheckProduct1(index) {
+   
+   var user_id = $("#detialsUser_id1"+index).val();
+   var pro_num = $("#detailsPro_num1"+index).val();
+  // alert("pro_num->"+pro_num);
+  // alert("user_id->"+user_id);
+   // 로그인이 되어 있지 않은 상태라면, 로그인 페이지로 이동하도록 연결
+   if (user_id =="") {
+      location.href = "/login";
+   }else{
+   var pro_num = $("#detailsPro_num1"+index).val();
+ 
+   $.ajax(
+      {
+         url:"<%=context%>/inputCheckProduct",
+         data:{user_id : user_id, pro_num : pro_num},
+         dataType : 'text',
+         success:function(data){
+            
+            if (data == 1) {
+               alert("위시리스트에 추가 되었습니다.");
+            } else alert("이미 추가 되었습니다.");
+         }
+      });
+   }
+}
 
-	//로그인 체크 function 베스트
-	function loginCheck1(index){
-	 //  alert("loginCheck start...");
-	
-	   var user_id = $("#detialsUser_id1"+index).val();
-	  // alert("user_id->"+user_id);
-	   // 로그인이 되어 있지 않다면 로그인 페이지로 이동
-	   if (user_id =="") {
-	      location.href = "/login"
-	      return false;
-	   }
-	   else return true;
-	}
-	
-    
-	// 로그인 체크 function 뉴
-	function loginCheck2(index){
-	 //  alert("loginCheck start...");
-	
-	   var user_id = $("#detialsUser_id2"+index).val();
-	 //  alert("user_id->"+user_id);
-	   // 로그인이 되어 있지 않다면 로그인 페이지로 이동
-	   if (user_id =="") {
-	      location.href = "/login";
-	      return false;
-	   }
-	   else return true;
-	}
-
-	// 위시 리스트 추가 아작스  베스트 
-	function putCheckProduct1(index) {
-	   
-	   var user_id = $("#detialsUser_id1"+index).val();
-	   var pro_num = $("#detailsPro_num1"+index).val();
-	  // alert("pro_num->"+pro_num);
-	  // alert("user_id->"+user_id);
-	   // 로그인이 되어 있지 않은 상태라면, 로그인 페이지로 이동하도록 연결
-	   if (loginCheck1(index) == false) {
-	      location.href = "/login";
-	   }
-	   else{
-		   var pro_num = $("#detailsPro_num1"+index).val();
-		 
-		   $.ajax(
-		      {
-		         url:"<%=context%>/inputCheckProduct",
-		         data:{user_id : user_id, pro_num : pro_num},
-		         dataType : 'text',
-		         success:function(data){
-		            
-		            if (data == 1) {
-		               alert("위시리스트에 추가 되었습니다.");
-		            } else alert("이미 추가 되었습니다.");
-		         }
-		      });
-	   }
-	}
-
-	//위시 리스트 추가 아작스  뉴 
-	function putCheckProduct2(index) {
-	   
-	   var user_id = $("#detialsUser_id2"+index).val();
-	   var pro_num = $("#detailsPro_num2"+index).val();
-	  // alert("pro_num->"+pro_num);
-	  // alert("user_id->"+user_id);
-	   // 로그인이 되어 있지 않은 상태라면, 로그인 페이지로 이동하도록 연결
-	   if (loginCheck2(index) == false) {
-	      location.href = "/login";
-	   }else{
-		   var pro_num = $("#detailsPro_num2"+index).val();
-		 
-		   $.ajax(
-		      {
-		         url:"<%=context%>/inputCheckProduct",
-		         data:{user_id : user_id, pro_num : pro_num},
-		         dataType : 'text',
-		         success:function(data){
-		            
-		            if (data == 1) {
-		               alert("위시리스트에 추가 되었습니다.");
-		            } else alert("이미 추가 되었습니다.");
-		         }
-		      });
-	   }
-	}
+//위시 리스트 추가 아작스  뉴 
+function putCheckProduct2(index) {
+   
+   var user_id = $("#detialsUser_id2"+index).val();
+   var pro_num = $("#detailsPro_num2"+index).val();
+  // alert("pro_num->"+pro_num);
+  // alert("user_id->"+user_id);
+   // 로그인이 되어 있지 않은 상태라면, 로그인 페이지로 이동하도록 연결
+   if (user_id =="") {
+      location.href = "/login";
+   }else{
+   var pro_num = $("#detailsPro_num2"+index).val();
+ 
+   $.ajax(
+      {
+         url:"<%=context%>/inputCheckProduct",
+         data:{user_id : user_id, pro_num : pro_num},
+         dataType : 'text',
+         success:function(data){
+            
+            if (data == 1) {
+               alert("위시리스트에 추가 되었습니다.");
+            } else alert("이미 추가 되었습니다.");
+         }
+      });
+   }
+}
 
 //////////////////
 
+// 로그인 체크 function 베스트
+function loginCheck1(index){
+ //  alert("loginCheck start...");
 
+   var user_id = $("#detialsUser_id1"+index).val();
+  // alert("user_id->"+user_id);
+   // 로그인이 되어 있지 않다면 로그인 페이지로 이동
+   if (user_id =="") {
+      location.href = "/login"
+      return false;
+   }
+   else return true;
+}
 
 // 장바구니 추가 아작스 베스트
-	function putBaskect1(index) {
-	 //  alert("putBaskect start...");
-	   
-	   // 로그인 체크 function 타기
-	   loginCheck1(index);
-	   if(loginCheck1(index) == true){
-	   var user_id = $("#detialsUser_id1"+index).val();
-	   var pro_num = $("#detailsPro_num1"+index).val();
-	  // alert("pro_num->"+pro_num);
-	   
-	   var quantity = 1;
-	  // alert("quantity->"+quantity);
-	   
-	   $.ajax(
-	      {
-	         url:"<%=context%>/inputBasket",
-	        data:{user_id : user_id, pro_num : pro_num, quantity : quantity},
-	        dataType : 'text',
-	        success:function(data){
-	        //   alert("data;" + data)
-	           if (data == 1) {
-	              alert("장바구니에 추가 되었습니다.");
-	           } else alert("이미 추가 되었습니다.");
-	        }
-	     });
-	  }
-	  else{
-		  location.href="/login";
-	  }
-	}
+   function putBaskect1(index) {
+    //  alert("putBaskect start...");
       
+      // 로그인 체크 function 타기
+      loginCheck1(index);
+      
+      var user_id = $("#detialsUser_id1"+index).val();
+      var pro_num = $("#detailsPro_num1"+index).val();
+     // alert("pro_num->"+pro_num);
+      
+      var quantity = 1;
+     // alert("quantity->"+quantity);
+      
+      $.ajax(
+         {
+            url:"<%=context%>/inputBasket",
+            data:{user_id : user_id, pro_num : pro_num, quantity : quantity},
+            dataType : 'text',
+            success:function(data){
+            //   alert("data;" + data)
+               if (data == 1) {
+                  alert("장바구니에 추가 되었습니다.");
+               } else alert("이미 추가 되었습니다.");
+            }
+         });
+      }
+      
+      
+   // 로그인 체크 function 뉴
+   function loginCheck2(index){
+    //  alert("loginCheck start...");
 
+      var user_id = $("#detialsUser_id2"+index).val();
+    //  alert("user_id->"+user_id);
+      // 로그인이 되어 있지 않다면 로그인 페이지로 이동
+      if (user_id =="") {
+         location.href = "/login";
+         return false;
+      }
+      else return true;
+   }
    
    // 장바구니 추가 아작스 뉴
       function putBaskect2(index) {
@@ -165,32 +155,28 @@
          
          // 로그인 체크 function 타기
          loginCheck2(index);
-         if(loginCheck2(index) == true){
-        	 var user_id = $("#detialsUser_id2"+index).val();
-             var pro_num = $("#detailsPro_num2"+index).val();
-          //   alert("pro_num->"+pro_num);
-             
-             var quantity = 1;
-           //  alert("quantity->"+quantity);
-             
-             $.ajax(
-                {
-                   url:"<%=context%>/inputBasket",
-                   data:{user_id : user_id, pro_num : pro_num, quantity : quantity},
-                   dataType : 'text',
-                   success:function(data){
-                  //    alert("data;" + data)
-                      if (data == 1) {
-                         alert("장바구니에 추가 되었습니다.");
-                      } else alert("이미 추가 되었습니다.");
-                   }
-                });
+         
+         var user_id = $("#detialsUser_id2"+index).val();
+         var pro_num = $("#detailsPro_num2"+index).val();
+      //   alert("pro_num->"+pro_num);
+         
+         var quantity = 1;
+       //  alert("quantity->"+quantity);
+         
+         $.ajax(
+            {
+               url:"<%=context%>/inputBasket",
+               data:{user_id : user_id, pro_num : pro_num, quantity : quantity},
+               dataType : 'text',
+               success:function(data){
+              //    alert("data;" + data)
+                  if (data == 1) {
+                     alert("장바구니에 추가 되었습니다.");
+                  } else alert("이미 추가 되었습니다.");
+               }
+            });
          }
-         else {
-        	 location.href = "/login";
-         }
-        }
-  //베스트 채팅
+   //베스트 채팅
    function putChatting1(index) {
 	  // alert("putChatting1 start...");
        
